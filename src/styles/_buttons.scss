@@ -1,0 +1,53 @@
+@use "./tokens" as *;
+
+.button {
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: get-color(secondary);
+  transition: all 0.3s ease-in-out;
+}
+
+// Large button
+.large-button {
+  width: 343px;
+  height: 66px;
+  border-radius: 8px;
+
+  @include regular-white-15;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.large-button--primary {
+  background-color: get-color(primary);
+}
+
+.large-button--orange {
+  background-color: get-color(orange);
+}
+
+// Small button
+.small-button {
+  width: 150px;
+  height: 33px;
+  border-radius: 6px;
+
+  @include subtext-white-12;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.small-button--primary {
+  background-color: get-color(primary);
+}
+
+.small-button--orange {
+  background-color: get-color(orange);
+}

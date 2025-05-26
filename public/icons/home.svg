@@ -1,0 +1,7 @@
+<svg id="home_icon" data-name="home icon" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
+  <g id="home_icon-2" data-name="home icon" transform="translate(10 10)">
+    <path id="Path_1" data-name="Path 1" d="M16.7,22.749V13.194A1.241,1.241,0,0,0,15.416,12H10.283A1.241,1.241,0,0,0,9,13.194v9.555" transform="translate(-1.481 1.251)" fill="none" stroke="#feffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Path_2" data-name="Path 2" d="M3,12.105a2.527,2.527,0,0,1,.9-1.931L12.738,2.6A2.526,2.526,0,0,1,16,2.6l8.842,7.578a2.526,2.526,0,0,1,.9,1.93V23.474A2.526,2.526,0,0,1,23.211,26H5.526A2.526,2.526,0,0,1,3,23.474Z" transform="translate(-3 -2.001)" fill="none" stroke="#feffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+  <rect id="Rectangle_442" data-name="Rectangle 442" width="44" height="44" fill="rgba(255,255,255,0)"/>
+</svg>

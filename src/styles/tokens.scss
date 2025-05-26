@@ -1,0 +1,70 @@
+@use "./colors" as colors;
+@use "./typography" as typography;
+@use "./text" as text;
+@use "./breakpoints" as breakpoints;
+
+// --- Re-export functions ---
+
+@function get-color($name) {
+  @return colors.get-color($name);
+}
+
+// --- Re-export typography mixins ---
+
+@mixin regular-roboto($size, $colorName, $spacing, $line) {
+  @include typography.regular-roboto($size, $colorName, $spacing, $line);
+}
+
+@mixin medium-roboto($size, $colorName, $spacing, $line) {
+  @include typography.medium-roboto($size, $colorName, $spacing, $line);
+}
+
+@mixin bold-roboto($size, $colorName, $spacing, $line) {
+  @include typography.bold-roboto($size, $colorName, $spacing, $line);
+}
+
+// --- Re-export text style mixins (examples) ---
+
+@mixin regular-white-22 {
+  @include regular-roboto(22pt, secondary, -0.24pt, 28pt);
+}
+
+@mixin bold-blue-22 {
+  @include bold-roboto(22pt, primary, -0.24pt, 28pt);
+}
+
+@mixin regular-spaceblue-15 {
+  @include regular-roboto(15pt, space, 0pt, 22pt);
+}
+
+@mixin subtext-white-12 {
+  @include regular-roboto(12pt, secondary, 0pt, 16pt);
+}
+
+@mixin subtext-spaceblue-12 {
+  @include regular-roboto(12pt, space, 0pt, 16pt);
+}
+
+@mixin bold-blue-17 {
+  @include bold-roboto(17pt, primary, 0pt, 22pt);
+}
+
+@mixin bold-white-20 {
+  @include bold-roboto(20pt, secondary, -0.24pt, 28pt);
+}
+
+@mixin medium-white-20 {
+  @include medium-roboto(20pt, secondary, -0.24pt, 28pt);
+}
+
+@mixin regular-white-17 {
+  @include regular-roboto(17pt, secondary, 0pt, 22pt);
+}
+
+@mixin regular-white-15 {
+  @include regular-roboto(15pt, secondary, 0pt, 20pt);
+}
+
+@mixin regular-white-28 {
+  @include regular-roboto(28pt, secondary, -0.24pt, 34pt);
+}

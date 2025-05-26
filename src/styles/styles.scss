@@ -1,0 +1,15 @@
+// Import global font and reset styles
+@use "./fonts.scss" as *;
+@use "./base.scss" as *;
+
+// Import core design tokens if needed (optional, explained below)
+@use "./tokens.scss" as *;
+
+// Import layout/grid utilities
+@use "./breakpoints.scss" as *;
+
+// Import component styles
+@use "./layout.scss" as *;
+@use "./buttons.scss" as *;
+@use "./components/header.scss" as *;
+@use "./components/footer.scss" as *;

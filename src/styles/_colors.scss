@@ -1,0 +1,12 @@
+$colors: (
+  primary: #0344DC,
+  orange: #FF4F00,
+  secondary: #ffffff,
+  space: #01203F,
+  red: #FF0000,
+  gray: #BABAC4,
+);
+
+@function get-color($name) {
+  @return map-get($colors, $name);
+}

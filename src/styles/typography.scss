@@ -1,0 +1,26 @@
+@mixin regular-roboto($size, $color, $spacing, $line) {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: $size;
+  letter-spacing: $spacing;
+  line-height: $line;
+  color: $color;
+}
+
+@mixin medium-roboto($size, $color, $spacing, $line) {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: $size;
+  letter-spacing: $spacing;
+  line-height: $line;
+  color: $color;
+}
+
+@mixin bold-roboto($size, $color, $spacing, $line) {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: $size;
+  letter-spacing: $spacing;
+  line-height: $line;
+  color: $color;
+}
