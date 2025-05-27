@@ -1,8 +1,0 @@
-<svg id="map_icon" data-name="map icon" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
-  <rect id="Rectangle_443" data-name="Rectangle 443" width="44" height="44" fill="none"/>
-  <g id="map_icon-2" data-name="map icon" transform="translate(10 10)">
-    <path id="Path_6" data-name="Path 6" d="M17.808,6.325a2.667,2.667,0,0,0,2.384,0l4.879-2.44A1.333,1.333,0,0,1,27,5.08V22.1a1.333,1.333,0,0,1-.737,1.192l-6.071,3.036a2.667,2.667,0,0,1-2.384,0l-5.616-2.808a2.667,2.667,0,0,0-2.384,0l-4.879,2.44A1.333,1.333,0,0,1,3,24.763V7.745a1.333,1.333,0,0,1,.737-1.192L9.808,3.517a2.667,2.667,0,0,1,2.384,0Z" transform="translate(-3 -3.236)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-    <path id="Path_7" data-name="Path 7" d="M15,5.764V24.631" transform="translate(1 -1.26)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-    <path id="Path_8" data-name="Path 8" d="M9,3.236V22.862" transform="translate(-1 -3.236)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-  </g>
-</svg>

@@ -1,6 +1,29 @@
-app-holder {
+.app-holder {
   min-height: 100vh;
   display: flex;
-  justify-content: space-between;
-  background-color: red;
+  flex-direction: column;
+
+  .app-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 6rem 1rem;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6rem;
+    z-index: 10;
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 6rem;
+    z-index: 10;
+  }
 }

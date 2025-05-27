@@ -1,8 +1,10 @@
-import Button from "@/components/ui/Button";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import PostList from "@/components/home/PostList";
 
 const page = () => {
-  return <div>hallo</div>;
+  return (
+    <>
+      <PostList />
+    </>
+  );
 };
 export default page;

@@ -1,0 +1,28 @@
+@use "../../tokens.scss" as *;
+
+.header {
+  width: 100%;
+  background-color: get-color(primary);
+  border-radius: 0 0 0.5rem 0.5rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 1rem;
+
+  &__notification {
+    color: get-color(secondary);
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    &:active,
+    &:focus,
+    &--active {
+      background-color: get-color(orange);
+    }
+  }
+}

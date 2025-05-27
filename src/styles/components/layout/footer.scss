@@ -1,0 +1,47 @@
+@use "../../tokens.scss" as *;
+
+.footer {
+  width: 100%;
+  background-color: get-color(primary);
+  position: relative;
+  border-radius: 0.5rem 0.5rem 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+
+  &__indicator {
+    position: absolute;
+    aspect-ratio: 1/1;
+    background-color: get-color(orange);
+    border-radius: 0.5rem;
+    z-index: 0;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+
+  &__menu {
+    color: get-color(secondary);
+    border-radius: 0.5rem;
+    transition: background-color 0.3s, transform 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
+      transition: transform 0.3s;
+    }
+
+    &--plus {
+      svg {
+        width: 4rem;
+        height: 4rem;
+      }
+    }
+  }
+}

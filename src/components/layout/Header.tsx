@@ -1,7 +1,6 @@
-import Image from "next/image";
-import Text from "./ui/Text";
-import Notification from "../../public/icons/notification.svg";
 import Link from "next/link";
+import Text from "../ui/Text";
+import NotificationIcon from "./NotificationIcon";
 
 const Header = () => {
   return (
@@ -12,11 +11,10 @@ const Header = () => {
         </div>
       </Link>
       <Link href="/notifications">
-        <div className="header__notification">
-          <Image priority src={Notification} alt="Notification Icon" />
-        </div>
+        <NotificationIcon />
       </Link>
     </div>
   );
 };
+
 export default Header;

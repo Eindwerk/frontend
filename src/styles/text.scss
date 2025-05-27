@@ -4,47 +4,72 @@
 // ——— Mixins ——— //
 
 @mixin regular-white-22 {
-  @include regular-roboto(22pt, get-color(secondary), -0.24pt, 28pt);
+  @include regular-roboto(
+    1.5rem,
+    get-color(secondary),
+    -0.02rem,
+    2.25rem
+  ); // 22pt → ~1.83rem → rounded to 1.5rem
 }
 
 @mixin bold-blue-22 {
-  @include bold-roboto(22pt, get-color(primary), -0.24pt, 28pt);
+  @include bold-roboto(1.5rem, get-color(primary), -0.02rem, 2.25rem);
 }
 
 @mixin regular-spaceblue-15 {
-  @include regular-roboto(15pt, get-color(space), 0pt, 22pt);
+  @include regular-roboto(
+    0.938rem,
+    get-color(space),
+    0rem,
+    1.375rem
+  ); // 15pt → ~0.94rem
 }
 
 @mixin subtext-white-12 {
-  @include regular-roboto(12pt, get-color(secondary), 0pt, 16pt);
+  @include regular-roboto(0.75rem, get-color(secondary), 0rem, 1rem);
 }
 
 @mixin subtext-spaceblue-12 {
-  @include regular-roboto(12pt, get-color(space), 0pt, 16pt);
+  @include regular-roboto(0.75rem, get-color(space), 0rem, 1rem);
 }
 
 @mixin bold-blue-17 {
-  @include bold-roboto(17pt, get-color(primary), 0pt, 22pt);
+  @include bold-roboto(
+    1.063rem,
+    get-color(primary),
+    0rem,
+    1.375rem
+  ); // 17pt → ~1.06rem
 }
 
 @mixin bold-white-20 {
-  @include bold-roboto(20pt, get-color(secondary), -0.24pt, 28pt);
+  @include bold-roboto(
+    1.25rem,
+    get-color(secondary),
+    -0.02rem,
+    1.75rem
+  ); // 20pt → 1.25rem
 }
 
 @mixin medium-white-20 {
-  @include medium-roboto(20pt, get-color(secondary), -0.24pt, 28pt);
+  @include medium-roboto(1.25rem, get-color(secondary), -0.02rem, 1.75rem);
 }
 
 @mixin regular-white-17 {
-  @include regular-roboto(17pt, get-color(secondary), 0pt, 22pt);
+  @include regular-roboto(1.063rem, get-color(secondary), 0rem, 1.375rem);
 }
 
 @mixin regular-white-15 {
-  @include regular-roboto(15pt, get-color(secondary), 0pt, 20pt);
+  @include regular-roboto(0.938rem, get-color(secondary), 0rem, 1.25rem);
 }
 
 @mixin regular-white-28 {
-  @include regular-roboto(28pt, get-color(secondary), -0.24pt, 34pt);
+  @include regular-roboto(
+    1.75rem,
+    get-color(secondary),
+    -0.02rem,
+    2.25rem
+  ); // 28pt → ~1.87rem → use 1.75rem for logic
 }
 
 // ——— CSS Classes ——— //

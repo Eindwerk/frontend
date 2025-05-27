@@ -1,0 +1,48 @@
+@use "../../tokens.scss" as *;
+
+.post {
+  background-color: get-color(primary-10);
+  border-radius: 0.5rem;
+  overflow: hidden;
+
+  .front {
+    &__image {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+      overflow: hidden;
+
+      &__media {
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+      }
+    }
+
+    &__description {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem;
+
+      &__text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      &__icons {
+        color: get-color(primary);
+        display: flex;
+        gap: 0.5rem;
+
+        svg {
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+    }
+  }
+
+  .back {
+  }
+}

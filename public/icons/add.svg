@@ -1,7 +1,0 @@
-<svg id="add_icon" data-name="add icon" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
-  <g id="post_icon" data-name="post icon" transform="translate(10 10)">
-    <path id="Path_4" data-name="Path 4" d="M5,12H29" transform="translate(-5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-    <path id="Path_5" data-name="Path 5" d="M12,5V29" transform="translate(0 -5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-  </g>
-  <rect id="Rectangle_453" data-name="Rectangle 453" width="44" height="44" fill="rgba(255,255,255,0)"/>
-</svg>
