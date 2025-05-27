@@ -1,0 +1,41 @@
+@use "../../tokens.scss" as *;
+
+.searchpage {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: get-color(primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+  height: 100%;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__form {
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+
+    &-icon {
+      color: get-color(secondary);
+
+      svg {
+        width: 3.5rem;
+      }
+    }
+
+    &-input {
+      background-color: get-color(secondary);
+      flex: 1;
+      border-radius: 0.375rem;
+      padding: 1rem;
+      border: none;
+    }
+  }
+}
