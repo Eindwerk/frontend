@@ -1,12 +1,12 @@
 .app-holder {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
   flex-direction: column;
 
   .app-container {
-    min-height: auto;
     flex: 1;
+    display: flex;
+    flex-direction: column;
     overflow-y: auto;
     padding: 6rem 1rem;
   }
