@@ -59,11 +59,11 @@
     &__comments {
       position: absolute;
       top: calc(100% / 1.59);
-      bottom: 4.5rem;
+      bottom: 4.125rem;
       left: 0;
       right: 0;
       overflow-y: auto;
-      padding: 0.5rem;
+      padding: 0 0.5rem;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
