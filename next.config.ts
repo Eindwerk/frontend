@@ -1,4 +1,8 @@
-module.exports = {
+// next.config.ts
+const nextConfig = {
+  experimental: {
+    appDir: true,
+  },
   webpack(config: any) {
     const fileLoaderRule = config.module.rules.find((rule: any) =>
       rule.test?.test?.(".svg")
@@ -25,3 +29,5 @@ module.exports = {
     return config;
   },
 };
+
+export default nextConfig;
