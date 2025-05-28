@@ -16,4 +16,5 @@
 @use "./components/layout/footer.scss" as *;
 @use "./components/home/post.scss" as *;
 @use "./components/home/postlist.scss" as *;
-@use "./components/searchbar/searchpage.scss" as *;
+@use "./components/pages/search-page.scss" as *;
+@use "./components/pages/post-detail.scss" as *;

@@ -10,7 +10,7 @@ const SearchForm = () => {
         </Link>
       </div>
       <div className="searchpage__form-input">
-        <input type="text" className="bold-blue-17 " />
+        <input type="text" className="bold-blue-17" />
       </div>
     </div>
   );
