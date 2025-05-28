@@ -1,4 +1,4 @@
-import { ArrowRight, User, Users, Box } from "lucide-react";
+import { ArrowRight, Box } from "lucide-react";
 import Link from "next/link";
 
 import Text from "./Text";
