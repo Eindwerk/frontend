@@ -8,8 +8,11 @@
 // Import layout/grid utilities
 @use "./breakpoints.scss" as *;
 
+// Import layout styles
+@use "./layout/main-layout.scss" as *;
+@use "./layout/auth-layout.scss" as *;
+
 // Import component styles
-@use "./layout.scss" as *;
 @use "./buttons.scss" as *;
 @use "./searchresult.scss" as *;
 @use "./components/layout/header.scss" as *;
