@@ -12,6 +12,7 @@ type TextVariant =
   | "medium-white-20"
   | "regular-white-17"
   | "regular-white-15"
+  | "regular-gray-15"
   | "regular-white-28";
 
 type TextProps = {

@@ -63,6 +63,10 @@
   @include regular-roboto(0.938rem, get-color(secondary), 0rem, 1.25rem);
 }
 
+@mixin regular-gray-15 {
+  @include regular-roboto(0.938rem, get-color(gray), 0rem, 1.25rem);
+}
+
 @mixin regular-white-28 {
   @include regular-roboto(
     1.75rem,
@@ -106,4 +110,8 @@
 }
 .regular-white-28 {
   @include regular-white-28;
+}
+
+.regular-gray-15 {
+  @include regular-gray-15;
 }
