@@ -12,11 +12,9 @@
 
 // Large button
 .large-button {
-  width: 20rem;
-  height: 4.5rem;
+  width: 100%;
+  height: 3rem;
   border-radius: 8px;
-
-  @include regular-white-15;
 
   &:hover {
     opacity: 0.8;

@@ -1,6 +1,6 @@
 @use "../../tokens.scss" as *;
 
-.signin-page {
+.create-account-page {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -28,16 +28,10 @@
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
-      width: 100%;
+      position: relative;
 
       &__title {
-        align-self: flex-start;
-      }
-
-      &__forgot {
-        align-self: flex-end;
-        opacity: 0.8;
-        margin-top: -0.5rem;
+        flex: 1;
       }
     }
   }

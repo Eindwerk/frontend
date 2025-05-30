@@ -2,6 +2,7 @@
 
 import React, { InputHTMLAttributes, useState } from "react";
 import Text from "./Text";
+import "@/styles/_input.scss";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -23,7 +24,7 @@ const Input: React.FC<InputProps> = ({ label, value, onChange, ...props }) => {
         className="input-field"
       />
       <div className={`input-label${isFloating ? " floating" : ""}`}>
-        <Text variant="subtext-spaceblue-12">{label}</Text>
+        <Text variant="subtext-spaceblue-8">{label}</Text>
       </div>
     </div>
   );

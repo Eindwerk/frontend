@@ -29,6 +29,10 @@
   @include regular-roboto(0.75rem, get-color(secondary), 0rem, 1rem);
 }
 
+@mixin subtext-spaceblue-8 {
+  @include regular-roboto(0.75rem, get-color(space), 0rem, 1rem);
+}
+
 @mixin subtext-spaceblue-12 {
   @include regular-roboto(0.75rem, get-color(space), 0rem, 1rem);
 }
@@ -114,4 +118,8 @@
 
 .regular-gray-15 {
   @include regular-gray-15;
+}
+
+.subtext-spaceblue-8 {
+  @include subtext-spaceblue-8;
 }
