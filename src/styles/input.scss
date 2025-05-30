@@ -1,0 +1,26 @@
+@use "./tokens.scss" as *;
+
+.input-wrapper {
+  position: relative;
+  width: 20rem;
+  height: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.input-field {
+  width: 100%;
+  padding: 2rem 1rem 1rem;
+  border-radius: 0.5rem;
+  background-color: get-color(secondary);
+
+  @extend .regular-spaceblue-15;
+}
+
+.input-label {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  pointer-events: none;
+}
