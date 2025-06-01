@@ -1,4 +1,4 @@
-const page = () => {
+const MyProfilePage = () => {
   return <div>page</div>;
 };
-export default page;
+export default MyProfilePage;

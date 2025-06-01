@@ -1,4 +1,4 @@
-const page = () => {
+const NewPostPage = () => {
   return <div>page</div>;
 };
-export default page;
+export default NewPostPage;

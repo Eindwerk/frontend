@@ -1,7 +1,7 @@
 import SearchList from "@/components/searchbar/SearchList";
 import SearchForm from "@/components/searchbar/SearchForm";
 
-const page = () => {
+const SearchPage = () => {
   return (
     <div className="searchpage">
       <SearchList />
@@ -9,4 +9,4 @@ const page = () => {
     </div>
   );
 };
-export default page;
+export default SearchPage;
