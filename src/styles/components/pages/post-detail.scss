@@ -7,6 +7,7 @@
   flex-direction: column;
   height: 100%;
   margin: 1rem 0;
+  overflow: hidden;
 
   .post-detail {
     position: relative;
@@ -58,7 +59,7 @@
 
     &__comments {
       position: absolute;
-      top: calc(100% / 1.59);
+      top: calc(100% / 1.35);
       bottom: 4.125rem;
       left: 0;
       right: 0;

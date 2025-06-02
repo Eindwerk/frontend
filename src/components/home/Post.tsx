@@ -1,12 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Text from "../ui/Text";
-
 import DummyPost from "../../../public/dummy/GntAnd33.jpg";
-import { HeartIcon, MessageCircleMore } from "lucide-react";
-
-// TODO: Add animation for flipping the post
+import { useState } from "react";
+import PostButtons from "./PostButtons";
 
 const Post = () => {
+  const [liked, setLiked] = useState(false);
+
   return (
     <div className="post">
       <div className="front">
@@ -25,10 +27,7 @@ const Post = () => {
             <Text variant="bold-blue-17">KAA Gent - Anderlecht</Text>
             <Text variant="subtext-spaceblue-12">Planet Group Arena</Text>
           </div>
-          <div className="front__description__icons">
-            <MessageCircleMore strokeWidth={1} />
-            <HeartIcon strokeWidth={1} />
-          </div>
+          <PostButtons liked={liked} setLiked={setLiked} />
         </div>
       </div>
       <div className="back"></div>
