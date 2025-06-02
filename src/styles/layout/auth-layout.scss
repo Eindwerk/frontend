@@ -1,8 +1,9 @@
 @use "../tokens.scss" as *;
 
 .auth-layout {
-  height: 100vh;
-  background: linear-gradient(get-color("primary"), get-color("space"));
+  height: 100lvh;
+  min-width: 430px;
+  background: linear-gradient(get-color(primary), get-color(space));
   padding: 4.5rem 1rem;
   overflow: hidden;
 }
