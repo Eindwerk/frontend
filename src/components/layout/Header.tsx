@@ -1,8 +1,10 @@
 import Link from "next/link";
 import Text from "../ui/Text";
 import NotificationIcon from "./NotificationIcon";
+import { useNotification } from "@/context/NotificationContext";
 
 const Header = () => {
+  const { count } = useNotification();
   return (
     <div className="header">
       <Link href="/">
@@ -11,7 +13,7 @@ const Header = () => {
         </div>
       </Link>
       <Link href="/notifications">
-        <NotificationIcon count={3} />
+        <NotificationIcon count={count} />
       </Link>
     </div>
   );
