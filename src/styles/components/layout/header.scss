@@ -2,7 +2,7 @@
 
 .header {
   width: 100%;
-  min-width: 430px;
+  min-width: 320px;
   background-color: get-color(primary);
   border-radius: 0 0 0.5rem 0.5rem;
   display: flex;
@@ -31,7 +31,7 @@
 
     &-count {
       position: absolute;
-      top: 0.4rem;
+      top: 0.3rem;
       color: get-color(secondary);
     }
   }

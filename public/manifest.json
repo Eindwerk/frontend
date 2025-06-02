@@ -1,0 +1,26 @@
+{
+  "name": "Groundpass",
+  "short_name": "Groundpass",
+  "start_url": "/?standalone=true",
+  "display": "standalone",
+  "background_color": "#0344dc",
+  "theme_color": "#0344dc",
+  "description": "Your journey to seamless travel starts here.",
+  "orientation": "portrait",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
