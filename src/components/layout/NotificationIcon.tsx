@@ -9,9 +9,12 @@ interface NotificationIconProps {
   count?: number;
 }
 
-const NotificationIcon = ({ count }: NotificationIconProps) => {
+const NotificationIcon = ({ count = 0 }: NotificationIconProps) => {
   const pathname = usePathname();
   const isActive = pathname === "/notifications";
+
+  const showCount = count > 0;
+  const displayCount = count > 9 ? "9+" : count.toString();
 
   return (
     <div
@@ -20,9 +23,9 @@ const NotificationIcon = ({ count }: NotificationIconProps) => {
       })}
     >
       <BellIcon strokeWidth={1} />
-      {count && count > 0 && (
+      {showCount && (
         <span className="header__notification-count">
-          <Text variant="subtext-white-12">{count}</Text>
+          <Text variant="subtext-white-12">{displayCount}</Text>
         </span>
       )}
     </div>
