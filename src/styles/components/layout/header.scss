@@ -10,9 +10,12 @@
   padding: 1rem;
 
   &__notification {
+    position: relative;
     color: get-color(secondary);
     border-radius: 0.5rem;
     transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
 
     svg {
       width: 2rem;
@@ -23,6 +26,12 @@
     &:focus,
     &--active {
       background-color: get-color(orange);
+    }
+
+    &-count {
+      position: absolute;
+      top: 0.4rem;
+      color: get-color(secondary);
     }
   }
 }

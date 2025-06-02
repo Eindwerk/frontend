@@ -11,7 +11,7 @@ const Header = () => {
         </div>
       </Link>
       <Link href="/notifications">
-        <NotificationIcon />
+        <NotificationIcon count={3} />
       </Link>
     </div>
   );

@@ -3,8 +3,13 @@
 import { usePathname } from "next/navigation";
 import { BellIcon } from "lucide-react";
 import clsx from "clsx";
+import Text from "../ui/Text";
 
-const NotificationIcon = () => {
+interface NotificationIconProps {
+  count?: number;
+}
+
+const NotificationIcon = ({ count }: NotificationIconProps) => {
   const pathname = usePathname();
   const isActive = pathname === "/notifications";
 
@@ -15,6 +20,11 @@ const NotificationIcon = () => {
       })}
     >
       <BellIcon strokeWidth={1} />
+      {count && count > 0 && (
+        <span className="header__notification-count">
+          <Text variant="subtext-white-12">{count}</Text>
+        </span>
+      )}
     </div>
   );
 };
