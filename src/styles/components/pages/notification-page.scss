@@ -5,11 +5,12 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   padding: 0.5rem;
   border-radius: 0.5rem;
   background-color: get-color(primary-10);
   overflow: hidden;
+  gap: 0.5rem;
 
   &__no-notifications {
     display: flex;
@@ -19,7 +20,8 @@
     text-align: center;
   }
 
-  .friend-request-card {
+  .friend-request-card,
+  .user-posted-card {
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -27,6 +29,10 @@
     align-items: center;
     gap: 1rem;
     width: 100%;
+    min-height: 3rem;
+    background-color: get-color(secondary);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
 
     &__summary {
       width: 100%;
@@ -34,12 +40,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 0.5rem;
-      background-color: get-color(secondary);
-      border-radius: 0.5rem;
-      padding: 0.75rem 1rem;
       border: none;
       cursor: pointer;
-      min-height: 3rem;
     }
 
     &__icon {
@@ -67,15 +69,12 @@
 
     &__btn {
       width: 100%;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
       border: none;
       font-weight: bold;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      min-height: 3rem;
       display: flex;
       justify-content: center;
 
