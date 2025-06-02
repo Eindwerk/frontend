@@ -1,0 +1,35 @@
+@use "./tokens.scss" as *;
+
+.confirm-overlay-blur {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  pointer-events: none;
+  backdrop-filter: blur(5px);
+}
+
+.confirm-overlay-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 101;
+  transform: translate(-50%, -50%);
+  background: get-color(primary);
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20rem;
+  text-align: center;
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+  }
+}
