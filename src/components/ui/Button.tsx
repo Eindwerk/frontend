@@ -6,6 +6,7 @@ type ButtonProps = {
   size?: "large" | "small";
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 };
 
 export default function Button({
