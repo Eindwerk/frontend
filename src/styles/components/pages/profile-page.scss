@@ -1,15 +1,20 @@
 @use "../../tokens.scss" as *;
 
-.profile-page {
+.profile {
   position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: 1rem 0;
+  margin: 1rem;
   border-radius: 0.5rem;
   background-color: get-color(primary-10);
   overflow: hidden;
+
+  &__header {
+    width: 100%;
+    flex-shrink: 0;
+    margin-bottom: 0.5rem;
+  }
 
   &__banner {
     width: 100%;
@@ -19,12 +24,15 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 0.5rem 0.5rem 0 0;
     }
   }
 
-  &__photo {
+  &__avatar {
     position: absolute;
     top: 4.5rem;
+    left: 50%;
+    transform: translateX(-50%);
     width: 5rem;
     height: 5rem;
     border-radius: 50%;
@@ -40,68 +48,116 @@
 
   &__info {
     margin-top: 2rem;
+    padding: 0 1rem;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    justify-content: center;
 
-    &__buttons {
+    &-content {
       display: flex;
+      flex-direction: column;
       align-items: center;
       gap: 0.5rem;
-      height: 2rem;
+    }
 
-      &__follow {
+    &-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: 0.75rem;
+
+      &__edit,
+      form {
+        height: 2rem;
         width: 100%;
-        height: 100%;
 
-        &__form {
-          height: 100%;
+        button {
+          width: 100%;
         }
       }
+    }
 
-      svg {
-        color: get-color(primary);
-        height: 2rem;
-        width: 2rem;
-      }
+    &-icon {
+      color: get-color(primary);
     }
   }
 
-  &__post-grid {
+  // this is the scrollable area with fixed height
+  &__scroll-area {
     flex: 1;
     width: 100%;
-    padding: 0.5rem;
-    margin-top: 1rem;
-    display: grid;
-    gap: 0.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+    max-height: calc(
+      100dvh - 16rem
+    ); // adjust depending on banner + info height
+    display: flex;
     justify-content: center;
-    align-content: start;
     overflow-y: auto;
+    padding: 0 0.5rem;
+    box-sizing: border-box;
+    margin-bottom: 0.5rem;
 
-    &__post {
-      &__image {
+    &__grid {
+      width: 100%;
+      max-width: 30rem;
+      display: grid;
+      gap: 0.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
+      align-content: start;
+      padding-bottom: 1rem;
+    }
+  }
+
+  &__post {
+    position: relative;
+    cursor: pointer;
+
+    &-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 0.25rem 0.25rem 0 0;
+      overflow: hidden;
+
+      img {
         width: 100%;
-        aspect-ratio: 1 / 1;
-        border-radius: 0.25rem 0.25rem 0 0;
-        overflow: hidden;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
+        height: 100%;
+        object-fit: cover;
+        display: block;
       }
+    }
 
-      &__content {
-        width: 100%;
-        padding: 0.25rem;
-        background-color: get-color(primary);
-        border-radius: 0 0 0.25rem 0.25rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    &-content {
+      width: 100%;
+      padding: 0.25rem;
+      background-color: get-color(primary);
+      border-radius: 0 0 0.25rem 0.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      backdrop-filter: blur(1px);
+      -webkit-backdrop-filter: blur(1px);
+      will-change: transform;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.25rem;
+      z-index: 2;
+
+      &__icon {
+        color: get-color(orange);
+
+        svg {
+          width: 3rem;
+          height: 3rem;
+        }
       }
     }
   }

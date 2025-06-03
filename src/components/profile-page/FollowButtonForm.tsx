@@ -6,17 +6,38 @@ import Button from "../ui/Button";
 
 const initialState = false;
 
-export default function FollowButtonForm() {
+interface FollowButtonFormProps {
+  own: boolean;
+  isEditing?: boolean;
+  setIsEditing?: (val: boolean) => void;
+}
+
+export default function FollowButtonForm({
+  own,
+  isEditing,
+  setIsEditing,
+}: FollowButtonFormProps) {
   const [isFollowing, formAction, isPending] = useActionState(
     toggleFollow,
     initialState
   );
 
+  if (own) {
+    const handleToggleEdit = () => {
+      if (setIsEditing) setIsEditing(!isEditing);
+    };
+
+    return (
+      <div className="profile__info-row__edit">
+        <Button type="button" variant="primary" onClick={handleToggleEdit}>
+          {isEditing ? "Save" : "Edit"}
+        </Button>
+      </div>
+    );
+  }
+
   return (
-    <form
-      action={formAction}
-      className="profile-page__info__buttons__follow__form"
-    >
+    <form action={formAction} className="profile__follow-form">
       <Button
         type="submit"
         variant={isFollowing ? "orange" : "primary"}

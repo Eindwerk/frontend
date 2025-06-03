@@ -1,19 +1,27 @@
-import ProfileInfo from "@/components/profile-page/ProfileInfo";
-import PostGrid from "@/components/profile-page/PostGrid";
+import { notFound } from "next/navigation";
+import type { ProfileVariant } from "@/types/ProfileVariant";
+import { validVariants } from "@/types/ProfileVariant";
+import ProfilePageClient from "@/components/profile-page/ProfilePageClient";
 
-import { ProfilePageProps } from "@/types/ProfilePageProps";
+interface ProfilePageParams {
+  params: {
+    variant: string;
+  };
+}
 
-const ProfilePage = async (props: {
-  params: { variant: ProfilePageProps["variant"] };
-}) => {
-  const { params } = props;
+export const dynamicParams = true;
+
+const ProfilePage = async ({ params }: ProfilePageParams) => {
   const { variant } = await params;
-  return (
-    <div className="profile-page">
-      <ProfileInfo variant={variant} />
-      <PostGrid />
-    </div>
-  );
+  if (!validVariants.includes(variant as ProfileVariant)) {
+    notFound();
+  }
+
+  return <ProfilePageClient variant={variant as ProfileVariant} />;
 };
 
 export default ProfilePage;
+
+export async function generateStaticParams() {
+  return validVariants.map((variant) => ({ variant }));
+}

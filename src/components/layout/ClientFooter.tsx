@@ -10,7 +10,7 @@ const menuItems = [
   { href: "/search", icon: Search },
   { href: "/new-post", icon: PlusIcon, plus: true },
   { href: "/map", icon: MapIcon },
-  { href: "/my-profile", icon: User },
+  { href: "/profile/my-profile", icon: User },
 ];
 
 const ClientFooter = () => {

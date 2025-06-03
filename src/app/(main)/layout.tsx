@@ -19,7 +19,7 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
       </head>
-      <body style={{ backgroundColor: "#fff" }}>
+      <body>
         <ClientAppFrame>{children}</ClientAppFrame>
       </body>
     </html>

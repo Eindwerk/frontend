@@ -1,35 +1,30 @@
 @use "./tokens.scss" as *;
 
 .confirm-overlay-blur {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-  pointer-events: none;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
 }
 
 .confirm-overlay-modal {
-  position: absolute;
+  background-color: get-color(primary);
+  position: fixed;
   top: 50%;
   left: 50%;
-  z-index: 101;
   transform: translate(-50%, -50%);
-  background: get-color(primary);
   padding: 2rem;
   border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 20rem;
+  z-index: 1001;
   text-align: center;
+  max-width: 90vw;
+  width: 20rem;
 
   &__buttons {
+    height: 2rem;
+    margin-top: 1.5rem;
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-    margin-top: 1rem;
-    width: 100%;
   }
 }

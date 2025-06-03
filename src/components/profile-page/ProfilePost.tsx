@@ -1,18 +1,65 @@
-import Image from "next/image";
+"use client";
 
+import { useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { Trash2 } from "lucide-react";
 import DummyPicture from "@/../public/dummy/IMG_2900.jpg";
 import Text from "../ui/Text";
+import ConfirmOverlay from "../ui/ConfirmOverlay";
 
-const ProfilePost = () => {
+interface Props {
+  isEditing?: boolean;
+}
+
+const ProfilePost = ({ isEditing = false }: Props) => {
+  const router = useRouter();
+  const [confirmOpen, setConfirmOpen] = useState(false);
+
+  const handleClick = () => {
+    if (!isEditing) router.push("/post-detail");
+  };
+
   return (
-    <div className="profile-page__post-grid__post">
-      <div className="profile-page__post-grid__post__image">
-        <Image src={DummyPicture} alt="Profile Post" />
+    <>
+      <div className="profile__post" onClick={handleClick}>
+        <div className="profile__post-image">
+          <Image src={DummyPicture} alt="Profile Post" />
+        </div>
+
+        <div className="profile__post-content subtext-white-12">
+          <Text variant="subtext-white-12">KAA Gent - Anderlecht</Text>
+        </div>
+
+        {isEditing && (
+          <div className="profile__post-overlay">
+            <div
+              className="profile__post-overlay__icon"
+              onClick={(e) => {
+                e.stopPropagation();
+                setConfirmOpen(true);
+              }}
+            >
+              <Trash2 />
+            </div>
+          </div>
+        )}
       </div>
-      <div className="profile-page__post-grid__post__content subtext-white-12">
-        <Text variant="subtext-white-12">KAA Gent - Anderlecht</Text>
-      </div>
-    </div>
+
+      {confirmOpen && (
+        <ConfirmOverlay
+          message="Are you sure you want to delete this post?"
+          confirmText="Yes"
+          cancelText="Cancel"
+          onConfirm={() => {
+            setConfirmOpen(false);
+            console.log("Post deleted");
+          }}
+          onCancel={() => setConfirmOpen(false)}
+        />
+      )}
+    </>
   );
 };
+
 export default ProfilePost;

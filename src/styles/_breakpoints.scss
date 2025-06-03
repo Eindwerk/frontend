@@ -6,6 +6,12 @@ $breakpoint-mobile: 430px;
 // $breakpoint-tablet: 768px;
 // $breakpoint-desktop: 1024px;
 
+$bp-xs: 20rem; // 320px
+$bp-sm: 30rem; // 480px
+$bp-md: 48rem; // 768px
+$bp-lg: 64rem; // 1024px
+$bp-xl: 75rem; // 1200px
+
 @mixin mobile {
   @media (max-width: #{$breakpoint-mobile}) {
     @content;

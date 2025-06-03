@@ -26,7 +26,7 @@ const NewPostPage = () => {
   };
 
   return (
-    <div>
+    <>
       {showConfirm && (
         <ConfirmOverlay
           message="Are you sure you want to post this?"
@@ -39,11 +39,13 @@ const NewPostPage = () => {
       <div className="new-post-page">
         <ImageContainer />
         <DetailContainer />
+        <div className="new-post-page__button">
+          <Button variant="primary" onClick={handlePostClick}>
+            Post
+          </Button>
+        </div>
       </div>
-      <Button variant="primary" onClick={handlePostClick}>
-        Post
-      </Button>
-    </div>
+    </>
   );
 };
 

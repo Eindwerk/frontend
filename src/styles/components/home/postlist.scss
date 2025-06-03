@@ -1,8 +1,14 @@
 @use "../../tokens.scss" as *;
 
-.post-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem 0;
+.scroll-area {
+  flex: 1;
+  overflow-y: auto; // ✅ allow vertical scroll
+  padding: 0 1rem; // optional: horizontal spacing
+
+  .post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
 }
