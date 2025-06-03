@@ -23,8 +23,8 @@ const ProfileInfo = ({
         <Image
           src={BannerDummy}
           alt="Banner Photo"
-          fill
-          sizes="100vw"
+          width={100}
+          height={50}
           style={{ objectFit: "cover" }}
         />
       </div>
