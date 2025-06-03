@@ -5,11 +5,11 @@ import ProfileInfo from "./ProfileInfo";
 import PostGrid from "./PostGrid";
 import type { ProfileVariant } from "@/types/ProfileVariant";
 
-interface Props {
+interface ProfilePageClientProps {
   variant: ProfileVariant;
 }
 
-const ProfilePageClient = ({ variant }: Props) => {
+const ProfilePageClient = ({ variant }: ProfilePageClientProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   return (

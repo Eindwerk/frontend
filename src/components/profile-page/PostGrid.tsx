@@ -6,7 +6,7 @@ interface Props {
 
 const PostGrid = ({ isEditing }: Props) => {
   return (
-    <div className="profile__scroll-area">
+    <div className="profile__scroll-area" role="region" aria-label="Post grid">
       <div className="profile__scroll-area__grid">
         {Array.from({ length: 24 }).map((_, i) => (
           <ProfilePost key={i} isEditing={isEditing} />

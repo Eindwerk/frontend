@@ -1,7 +1,7 @@
 import Image from "next/image";
 import BannerDummy from "@/../public/dummy/IMG_2900.jpg";
 import ProfileDummy from "@/../public/dummy/DSC_0569.jpg";
-import { ProfileVariant } from "@/types/ProfileVariant";
+import type { ProfileVariant } from "@/types/ProfileVariant";
 import ProfileInfoClient from "./ProfileInfoClient";
 
 interface ProfileInfoProps {
@@ -20,11 +20,23 @@ const ProfileInfo = ({
   return (
     <div className="profile__header">
       <div className="profile__banner">
-        <Image src={BannerDummy} alt="Banner Photo" />
+        <Image
+          src={BannerDummy}
+          alt="Banner Photo"
+          fill
+          sizes="100vw"
+          style={{ objectFit: "cover" }}
+        />
       </div>
 
       <div className="profile__avatar">
-        <Image src={ProfileDummy} alt="Profile Photo" />
+        <Image
+          src={ProfileDummy}
+          alt="Profile Photo"
+          fill
+          sizes="5rem"
+          style={{ objectFit: "cover" }}
+        />
       </div>
 
       <div className="profile__info">

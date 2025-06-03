@@ -3,16 +3,15 @@ import type { ProfileVariant } from "@/types/ProfileVariant";
 import { validVariants } from "@/types/ProfileVariant";
 import ProfilePageClient from "@/components/profile-page/ProfilePageClient";
 
-interface ProfilePageParams {
-  params: {
-    variant: string;
-  };
-}
-
 export const dynamicParams = true;
 
-const ProfilePage = async ({ params }: ProfilePageParams) => {
-  const { variant } = await params; // ✅
+const ProfilePage = async ({
+  params,
+}: {
+  params: Promise<{ variant: string }>;
+}) => {
+  const { variant } = await params;
+
   if (!validVariants.includes(variant as ProfileVariant)) {
     notFound();
   }

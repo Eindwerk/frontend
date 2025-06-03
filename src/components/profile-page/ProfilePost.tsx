@@ -17,7 +17,20 @@ const ProfilePost = ({ isEditing = false }: Props) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const handleClick = () => {
-    if (!isEditing) router.push("/post-detail");
+    if (!isEditing) {
+      router.push("/post-detail");
+    }
+  };
+
+  const handleDelete = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setConfirmOpen(true);
+  };
+
+  const confirmDelete = () => {
+    setConfirmOpen(false);
+    console.log("Post deleted");
+    // TODO: add actual delete logic (API call, local state update, etc.)
   };
 
   return (
@@ -27,19 +40,13 @@ const ProfilePost = ({ isEditing = false }: Props) => {
           <Image src={DummyPicture} alt="Profile Post" />
         </div>
 
-        <div className="profile__post-content subtext-white-12">
+        <div className="profile__post-content">
           <Text variant="subtext-white-12">KAA Gent - Anderlecht</Text>
         </div>
 
         {isEditing && (
           <div className="profile__post-overlay">
-            <div
-              className="profile__post-overlay__icon"
-              onClick={(e) => {
-                e.stopPropagation();
-                setConfirmOpen(true);
-              }}
-            >
+            <div className="profile__post-overlay__icon" onClick={handleDelete}>
               <Trash2 />
             </div>
           </div>
@@ -51,10 +58,7 @@ const ProfilePost = ({ isEditing = false }: Props) => {
           message="Are you sure you want to delete this post?"
           confirmText="Yes"
           cancelText="Cancel"
-          onConfirm={() => {
-            setConfirmOpen(false);
-            console.log("Post deleted");
-          }}
+          onConfirm={confirmDelete}
           onCancel={() => setConfirmOpen(false)}
         />
       )}

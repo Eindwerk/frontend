@@ -14,7 +14,7 @@ interface FollowButtonFormProps {
 
 export default function FollowButtonForm({
   own,
-  isEditing,
+  isEditing = false,
   setIsEditing,
 }: FollowButtonFormProps) {
   const [isFollowing, formAction, isPending] = useActionState(
@@ -24,7 +24,7 @@ export default function FollowButtonForm({
 
   if (own) {
     const handleToggleEdit = () => {
-      if (setIsEditing) setIsEditing(!isEditing);
+      setIsEditing?.(!isEditing);
     };
 
     return (
