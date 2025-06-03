@@ -12,7 +12,7 @@ interface ProfilePageParams {
 export const dynamicParams = true;
 
 const ProfilePage = async ({ params }: ProfilePageParams) => {
-  const { variant } = await params;
+  const { variant } = await params; // ✅
   if (!validVariants.includes(variant as ProfileVariant)) {
     notFound();
   }
