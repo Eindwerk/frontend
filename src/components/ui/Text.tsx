@@ -8,6 +8,7 @@ type TextVariant =
   | "subtext-white-12"
   | "subtext-spaceblue-12"
   | "subtext-spaceblue-8"
+  | "subtext-red-12"
   | "bold-blue-17"
   | "bold-white-20"
   | "medium-white-20"

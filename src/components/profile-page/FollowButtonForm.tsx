@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { signOut } from "@/lib/actions/signOut"; // <== importeren
 import { toggleFollow } from "@/server-actions/toggleFollow";
 import Button from "../ui/Button";
 
@@ -10,7 +11,7 @@ interface FollowButtonFormProps {
   setIsEditing?: (val: boolean) => void;
 }
 
-const initialState = false;
+const initialFollowState = false;
 
 export default function FollowButtonForm({
   own,
@@ -21,32 +22,28 @@ export default function FollowButtonForm({
     if (setIsEditing) setIsEditing(!isEditing);
   };
 
-  const handleLogout = () => {
-    // Add your logout logic here (e.g., call an auth signOut function)
-    alert("Logged out!"); // Replace with real logic
-  };
-
-  // Always call hooks at the top level
   const [isFollowing, formAction, isPending] = useActionState(
     toggleFollow,
-    initialState
+    initialFollowState
   );
 
-  // Show Edit/Logout if own profile
   if (own) {
     return (
-      <form>
+      <>
         <Button type="button" variant="primary" onClick={handleToggleEdit}>
           {isEditing ? "Save" : "Edit"}
         </Button>
-        <Button type="button" variant="orange" onClick={handleLogout}>
-          Logout
-        </Button>
-      </form>
+
+        {/* Logout button that triggers server action */}
+        <form action={signOut}>
+          <Button type="submit" variant="orange">
+            Logout
+          </Button>
+        </form>
+      </>
     );
   }
 
-  // Show Follow/Unfollow if not own profile
   return (
     <form
       action={formAction}

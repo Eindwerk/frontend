@@ -37,6 +37,10 @@
   @include regular-roboto(0.75rem, get-color(space), 0rem, 1rem);
 }
 
+@mixin subtext-red-12 {
+  @include regular-roboto(0.75rem, get-color(red), 0rem, 1rem);
+}
+
 @mixin bold-blue-17 {
   @include bold-roboto(
     1.063rem,
@@ -96,6 +100,10 @@
 }
 .subtext-spaceblue-12 {
   @include subtext-spaceblue-12;
+}
+
+.subtext-red-12 {
+  @include subtext-red-12;
 }
 .bold-blue-17 {
   @include bold-blue-17;
