@@ -40,7 +40,7 @@ const ProfilePost = ({ isEditing = false }: Props) => {
           <Image src={DummyPicture} alt="Profile Post" />
         </div>
 
-        <div className="profile__post-content">
+        <div className="profile__post-content subtext-white-12">
           <Text variant="subtext-white-12">KAA Gent - Anderlecht</Text>
         </div>
 

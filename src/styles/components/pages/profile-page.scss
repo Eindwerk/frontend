@@ -71,6 +71,8 @@
       form {
         height: 2rem;
         width: 100%;
+        display: flex;
+        gap: 1rem;
 
         button {
           width: 100%;
@@ -83,7 +85,6 @@
     }
   }
 
-  // this is the scrollable area with fixed height
   &__scroll-area {
     flex: 1;
     width: 100%;

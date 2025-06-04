@@ -11,26 +11,23 @@ const Post = () => {
 
   return (
     <div className="post">
-      <div className="front">
-        <div className="front__image">
-          <Image
-            priority
-            src={DummyPost}
-            alt="User Post"
-            className="front__image__media"
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-        <div className="front__description">
-          <div className="front__description__text">
-            <Text variant="bold-blue-17">KAA Gent - Anderlecht</Text>
-            <Text variant="subtext-spaceblue-12">Planet Group Arena</Text>
-          </div>
-          <PostButtons liked={liked} setLiked={setLiked} />
-        </div>
+      <div className="front__image">
+        <Image
+          priority
+          src={DummyPost}
+          alt="User Post"
+          className="front__image__media"
+          fill
+          style={{ objectFit: "cover" }}
+        />
       </div>
-      <div className="back"></div>
+      <div className="front__description">
+        <div className="front__description__text">
+          <Text variant="bold-blue-17">KAA Gent - Anderlecht</Text>
+          <Text variant="subtext-spaceblue-12">Planet Group Arena</Text>
+        </div>
+        <PostButtons liked={liked} setLiked={setLiked} />
+      </div>
     </div>
   );
 };

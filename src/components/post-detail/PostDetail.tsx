@@ -5,6 +5,7 @@ import { HeartIcon, MessageCircleMore } from "lucide-react";
 import Text from "../ui/Text";
 import CommentForm from "./CommentForm";
 import CommentList from "./CommentList";
+import Link from "next/link";
 
 const PostDetail = () => {
   return (
@@ -12,7 +13,8 @@ const PostDetail = () => {
       <div className="post-detail__image-holder">
         <Image
           src={DummyPost}
-          alt="Dummt Post"
+          alt="Dummy Post"
+          fill
           className="post-detail__image-holder__image"
         />
       </div>
@@ -22,7 +24,9 @@ const PostDetail = () => {
           <Text variant="subtext-spaceblue-12">Planet Group Arena</Text>
         </div>
         <div className="post-detail__description__icons">
-          <MessageCircleMore strokeWidth={1} />
+          <Link href="/">
+            <MessageCircleMore strokeWidth={1} />
+          </Link>
           <HeartIcon strokeWidth={1} />
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { HeartIcon, MessageCircleMore } from "lucide-react";
+import Link from "next/link";
 
 interface PostButtonsProps {
   liked: boolean;
@@ -10,7 +11,9 @@ interface PostButtonsProps {
 const PostButtons = ({ liked, setLiked }: PostButtonsProps) => {
   return (
     <div className="front__description__icons">
-      <MessageCircleMore strokeWidth={1} />
+      <Link href="/post-detail">
+        <MessageCircleMore strokeWidth={1} />
+      </Link>
       <HeartIcon
         strokeWidth={1}
         fill={liked ? "#0344dc" : "none"}
