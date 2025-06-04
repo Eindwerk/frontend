@@ -29,3 +29,6 @@
 @use "./components/auth/welcome.scss" as *;
 @use "./components/auth/signin.scss" as *;
 @use "./components/auth/createaccount.scss" as *;
+@use "./components/auth/forgot-password.scss" as *;
+@use "./components/auth/email-sent.scss" as *;
+@use "./components/auth/confirm-email.scss" as *;

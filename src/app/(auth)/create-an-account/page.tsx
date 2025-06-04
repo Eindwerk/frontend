@@ -1,10 +1,9 @@
-"use client";
-
 import Image from "next/image";
 import Text from "@/components/ui/Text";
 import Input from "@/components/ui/input";
 import Button from "@/components/ui/Button";
 import Logo from "@/assets/logo.png";
+import Link from "next/link";
 
 const CreateAccountPage = () => {
   return (
@@ -27,21 +26,11 @@ const CreateAccountPage = () => {
       </div>
 
       <div className="create-account-page__buttons">
-        <Button
-          variant="primary"
-          onClick={() => {
-            window.location.href = "/create-an-account";
-          }}
-        >
-          Sign up
+        <Button variant="primary">
+          <Link href="/confirm-email">Sign up</Link>
         </Button>
-        <Button
-          variant="orange"
-          onClick={() => {
-            window.location.href = "/sign-in";
-          }}
-        >
-          Already have an account?
+        <Button variant="orange">
+          <Link href="/sign-in">Already have an account?</Link>
         </Button>
       </div>
     </div>

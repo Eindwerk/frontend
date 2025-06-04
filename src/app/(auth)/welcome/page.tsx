@@ -1,9 +1,8 @@
-"use client";
-
 import Image from "next/image";
 import Text from "@/components/ui/Text";
 import Button from "@/components/ui/Button";
 import GroundpassLogo from "@/assets/logo.png";
+import Link from "next/link";
 
 const WelcomePage = () => {
   return (
@@ -25,21 +24,11 @@ const WelcomePage = () => {
       </div>
 
       <div className="welcome-page__buttons">
-        <Button
-          variant="primary"
-          onClick={() => {
-            window.location.href = "/create-an-account";
-          }}
-        >
-          Create an account
+        <Button variant="primary">
+          <Link href="create-an-account">Create an account</Link>
         </Button>
-        <Button
-          variant="orange"
-          onClick={() => {
-            window.location.href = "/sign-in";
-          }}
-        >
-          Sign in
+        <Button variant="orange">
+          <Link href="/sign-in">Sign in</Link>
         </Button>
       </div>
     </div>

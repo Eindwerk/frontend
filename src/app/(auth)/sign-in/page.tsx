@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Text from "@/components/ui/Text";
 import Logo from "@/assets/logo.png";
@@ -34,21 +32,11 @@ const SignInPage = () => {
       </div>
 
       <div className="signin-page__buttons">
-        <Button
-          variant="primary"
-          onClick={() => {
-            location.href = "/sign-in";
-          }}
-        >
-          Sign in
+        <Button variant="primary">
+          <Link href="/sign-in"> Sign in</Link>
         </Button>
-        <Button
-          variant="orange"
-          onClick={() => {
-            location.href = "/create-an-account";
-          }}
-        >
-          Create an account
+        <Button variant="orange">
+          <Link href="/create-an-account">Create an account</Link>
         </Button>
       </div>
     </div>
