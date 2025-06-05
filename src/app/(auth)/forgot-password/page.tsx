@@ -3,34 +3,32 @@ import Text from "@/components/ui/Text";
 import Logo from "@/assets/logo.png";
 import Input from "@/components/ui/input";
 import Button from "@/components/ui/Button";
+import Form from "next/form";
 import Link from "next/link";
+import { forgotPassword } from "@/lib/actions/forgotPassword";
 
-const page = () => {
+export default function ForgotPasswordPage() {
   return (
-    <div className="forgot-pass-page">
-      <div className="forgot-pass-page__image">
+    <div className="forgot-password-page">
+      <div className="forgot-password-page__image">
         <Image src={Logo} alt="Groundpass Logo" />
       </div>
 
-      <div className="forgot-pass-page__text">
-        <div className="form">
-          <div className="form__title">
-            <Text variant="medium-white-20">Fill in you email</Text>
-          </div>
-
-          <Input label="Email" type="email" />
+      <Form action={forgotPassword} className="form">
+        <div className="form__header">
+          <Text variant="medium-white-20">Fill in your email</Text>
+          <Input label="Email" type="email" name="email" required />
         </div>
-      </div>
 
-      <div className="forgot-pass-page__buttons">
-        <Button variant="primary">
-          <Link href="/email-sent">Send email</Link>
-        </Button>
-        <Button variant="orange">
-          <Link href="/sign-in">Back</Link>
-        </Button>
-      </div>
+        <div className="form__footer">
+          <Button variant="primary" type="submit">
+            Send email
+          </Button>
+          <Button variant="orange">
+            <Link href="/sign-in">Back</Link>
+          </Button>
+        </div>
+      </Form>
     </div>
   );
-};
-export default page;
+}

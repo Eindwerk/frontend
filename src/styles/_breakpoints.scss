@@ -1,6 +1,8 @@
 // _breakpoints.scss
 
 $breakpoint-mobile: 430px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
 
 // You can define tablet/desktop later
 // $breakpoint-tablet: 768px;
@@ -14,6 +16,18 @@ $bp-xl: 75rem; // 1200px
 
 @mixin mobile {
   @media (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$breakpoint-desktop}) {
     @content;
   }
 }

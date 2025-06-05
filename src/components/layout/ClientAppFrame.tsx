@@ -5,6 +5,7 @@ import "leaflet/dist/leaflet.css";
 import { NotificationProvider } from "@/context/NotificationContext";
 import Header from "./Header";
 import Footer from "./Footer";
+
 export default function ClientAppFrame({
   children,
 }: {
@@ -12,10 +13,12 @@ export default function ClientAppFrame({
 }) {
   return (
     <NotificationProvider>
-      <div className="app-holder">
-        <Header />
-        <div className="app-container">{children}</div>
-        <Footer />
+      <div className="app-wrapper">
+        <div className="app-holder">
+          <Header />
+          <div className="app-container">{children}</div>
+          <Footer />
+        </div>
       </div>
     </NotificationProvider>
   );

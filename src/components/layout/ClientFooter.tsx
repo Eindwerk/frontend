@@ -29,30 +29,32 @@ const ClientFooter = () => {
 
   return (
     <div className="footer">
-      <div
-        className="footer__indicator"
-        style={{
-          left: indicatorStyle.left,
-          width: indicatorStyle.width,
-        }}
-      />
-      {menuItems.map((item, idx) => {
-        const Icon = item.icon;
-        return (
-          <Link key={item.href} href={item.href}>
-            <div
-              ref={(el) => {
-                menuRefs.current[idx] = el;
-              }}
-              className={`footer__menu${
-                pathname === item.href ? " footer__menu--active" : ""
-              }${item.plus ? " footer__menu--plus" : ""}`}
-            >
-              <Icon strokeWidth={1} />
-            </div>
-          </Link>
-        );
-      })}
+      <div className="footer__content">
+        <div
+          className="footer__indicator"
+          style={{
+            left: indicatorStyle.left,
+            width: indicatorStyle.width,
+          }}
+        />
+        {menuItems.map((item, idx) => {
+          const Icon = item.icon;
+          return (
+            <Link key={item.href} href={item.href}>
+              <div
+                ref={(el) => {
+                  menuRefs.current[idx] = el;
+                }}
+                className={`footer__menu${
+                  pathname === item.href ? " footer__menu--active" : ""
+                }${item.plus ? " footer__menu--plus" : ""}`}
+              >
+                <Icon strokeWidth={1} />
+              </div>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 };

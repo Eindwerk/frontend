@@ -1,4 +1,5 @@
 @use "../../tokens.scss" as *;
+@use "../../breakpoints.scss" as *;
 
 .post-detail-holder {
   position: relative;
@@ -29,6 +30,10 @@
       &__image {
         object-fit: cover;
       }
+
+      @include desktop {
+        padding-top: 56.5%;
+      }
     }
 
     &__description {
@@ -50,7 +55,25 @@
         svg {
           width: 2rem;
           height: 2rem;
+          transition: transform 0.3s;
+
+          &:hover {
+            transform: scale(1.1);
+          }
         }
+
+        @include desktop {
+          gap: 1rem;
+
+          svg {
+            width: 2.5rem;
+            height: 2.5rem;
+          }
+        }
+      }
+
+      @include desktop {
+        padding: 1rem;
       }
     }
 
@@ -95,6 +118,10 @@
           margin-top: 0.5rem;
         }
       }
+
+      @include desktop {
+        padding: 0 1rem;
+      }
     }
 
     &__comment-form {
@@ -130,6 +157,11 @@
               outline: none;
             }
           }
+
+          @include desktop {
+            height: 3rem;
+            gap: 1rem;
+          }
         }
 
         &__button-holder {
@@ -138,8 +170,22 @@
           svg {
             width: 2rem;
             height: 2rem;
+            transition: transform 0.3s;
+
+            &:hover {
+              transform: scale(1.1);
+            }
+
+            @include desktop {
+              width: 3rem;
+              height: 3rem;
+            }
           }
         }
+      }
+
+      @include desktop {
+        padding: 1rem;
       }
     }
   }

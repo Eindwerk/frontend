@@ -1,9 +1,11 @@
 import Image from "next/image";
-import Text from "@/components/ui/Text";
+import Logo from "@/assets/logo.png";
+import Form from "next/form";
 import Input from "@/components/ui/input";
 import Button from "@/components/ui/Button";
-import Logo from "@/assets/logo.png";
+import Text from "@/components/ui/Text";
 import Link from "next/link";
+import { createAccount } from "@/lib/actions/createAccount";
 
 const CreateAccountPage = () => {
   return (
@@ -12,27 +14,23 @@ const CreateAccountPage = () => {
         <Image src={Logo} alt="Groundpass Logo" />
       </div>
 
-      <div className="create-account-page__text">
-        <div className="form">
-          <div className="form__title">
-            <Text variant="medium-white-20">Create your account</Text>
-          </div>
-
-          <Input label="Name" type="text" />
-          <Input label="Username" type="text" />
-          <Input label="Email" type="email" />
-          <Input label="Password" type="password" />
+      <Form action={createAccount} className="form">
+        <div className="form__header">
+          <Text variant="medium-white-20">Create your account</Text>
+          <Input label="Name" type="text" name="name" required />
+          <Input label="Username" type="text" name="username" required />
+          <Input label="Email" type="email" name="email" required />
+          <Input label="Password" type="password" name="password" required />
         </div>
-      </div>
-
-      <div className="create-account-page__buttons">
-        <Button variant="primary">
-          <Link href="/confirm-email">Sign up</Link>
-        </Button>
-        <Button variant="orange">
-          <Link href="/sign-in">Already have an account?</Link>
-        </Button>
-      </div>
+        <div className="form__footer">
+          <Button variant="primary" type="submit">
+            Sign up
+          </Button>
+          <Button variant="orange">
+            <Link href="/sign-in">Already have an account?</Link>
+          </Button>
+        </div>
+      </Form>
     </div>
   );
 };

@@ -1,9 +1,11 @@
 @use "../../tokens.scss" as *;
+@use "../../breakpoints.scss" as *;
 
 .post {
   background-color: get-color(primary-10);
   border-radius: 0.5rem;
   overflow: hidden;
+  width: 100%;
 
   .front {
     &__image {
@@ -38,11 +40,41 @@
         svg {
           width: 2rem;
           height: 2rem;
+          transition: transform 0.3s;
+
+          &:hover {
+            transform: scale(1.1);
+          }
         }
       }
     }
   }
 
-  .back {
+  @include desktop {
+    max-width: 800px;
+    margin: 0 auto;
+
+    .front {
+      &__description {
+        padding: 1rem;
+
+        &__icons {
+          gap: 1rem;
+
+          svg {
+            width: 2.5rem;
+            height: 2.5rem;
+          }
+        }
+
+        &__text {
+          gap: 0.25rem;
+        }
+      }
+
+      &__image {
+        aspect-ratio: 16 / 9;
+      }
+    }
   }
 }

@@ -1,87 +1,119 @@
 @use "./typography" as *;
 @use "./colors" as *;
+@use "./breakpoints" as *;
 
 // ——— Mixins ——— //
 
 @mixin regular-white-22 {
-  @include regular-roboto(
-    1.5rem,
-    get-color(secondary),
-    -0.02rem,
-    2.25rem
-  ); // 22pt → ~1.83rem → rounded to 1.5rem
+  @include regular-roboto(1.5rem, get-color(secondary), -0.02rem, 2.25rem);
+
+  @include desktop {
+    @include regular-roboto(1.75rem, get-color(secondary), -0.02rem, 2.5rem);
+  }
 }
 
 @mixin bold-blue-22 {
   @include bold-roboto(1.5rem, get-color(primary), -0.02rem, 2.25rem);
+
+  @include desktop {
+    @include bold-roboto(1.75rem, get-color(primary), -0.02rem, 2.5rem);
+  }
 }
 
 @mixin regular-spaceblue-15 {
-  @include regular-roboto(
-    0.938rem,
-    get-color(space),
-    0rem,
-    1.375rem
-  ); // 15pt → ~0.94rem
+  @include regular-roboto(0.938rem, get-color(space), 0rem, 1.375rem);
+
+  @include desktop {
+    @include regular-roboto(1.125rem, get-color(space), 0rem, 1.5rem);
+  }
 }
 
 @mixin subtext-white-12 {
   @include regular-roboto(0.75rem, get-color(secondary), 0rem, 1rem);
+
+  @include desktop {
+    @include regular-roboto(0.875rem, get-color(secondary), 0rem, 1.125rem);
+  }
 }
 
 @mixin subtext-spaceblue-8 {
   @include regular-roboto(0.75rem, get-color(space), 0rem, 1rem);
+
+  @include desktop {
+    @include regular-roboto(0.875rem, get-color(space), 0rem, 1.125rem);
+  }
 }
 
 @mixin subtext-spaceblue-12 {
   @include regular-roboto(0.75rem, get-color(space), 0rem, 1rem);
+
+  @include desktop {
+    @include regular-roboto(0.875rem, get-color(space), 0rem, 1.125rem);
+  }
 }
 
 @mixin subtext-red-12 {
   @include regular-roboto(0.75rem, get-color(red), 0rem, 1rem);
+
+  @include desktop {
+    @include regular-roboto(0.875rem, get-color(red), 0rem, 1.125rem);
+  }
 }
 
 @mixin bold-blue-17 {
-  @include bold-roboto(
-    1.063rem,
-    get-color(primary),
-    0rem,
-    1.375rem
-  ); // 17pt → ~1.06rem
+  @include bold-roboto(1.063rem, get-color(primary), 0rem, 1.375rem);
+
+  @include desktop {
+    @include bold-roboto(1.25rem, get-color(primary), 0rem, 1.5rem);
+  }
 }
 
 @mixin bold-white-20 {
-  @include bold-roboto(
-    1.25rem,
-    get-color(secondary),
-    -0.02rem,
-    1.75rem
-  ); // 20pt → 1.25rem
+  @include bold-roboto(1.25rem, get-color(secondary), -0.02rem, 1.75rem);
+
+  @include desktop {
+    @include bold-roboto(1.5rem, get-color(secondary), -0.02rem, 2rem);
+  }
 }
 
 @mixin medium-white-20 {
   @include medium-roboto(1.25rem, get-color(secondary), -0.02rem, 1.75rem);
+
+  @include desktop {
+    @include medium-roboto(1.5rem, get-color(secondary), -0.02rem, 2rem);
+  }
 }
 
 @mixin regular-white-17 {
   @include regular-roboto(1.063rem, get-color(secondary), 0rem, 1.375rem);
+
+  @include desktop {
+    @include regular-roboto(1.25rem, get-color(secondary), 0rem, 1.5rem);
+  }
 }
 
 @mixin regular-white-15 {
   @include regular-roboto(0.938rem, get-color(secondary), 0rem, 1.25rem);
+
+  @include desktop {
+    @include regular-roboto(1.063rem, get-color(secondary), 0rem, 1.375rem);
+  }
 }
 
 @mixin regular-gray-15 {
   @include regular-roboto(0.938rem, get-color(gray), 0rem, 1.25rem);
+
+  @include desktop {
+    @include regular-roboto(1.063rem, get-color(gray), 0rem, 1.375rem);
+  }
 }
 
 @mixin regular-white-28 {
-  @include regular-roboto(
-    1.75rem,
-    get-color(secondary),
-    -0.02rem,
-    2.25rem
-  ); // 28pt → ~1.87rem → use 1.75rem for logic
+  @include regular-roboto(1.75rem, get-color(secondary), -0.02rem, 2.25rem);
+
+  @include desktop {
+    @include regular-roboto(2rem, get-color(secondary), -0.02rem, 2.5rem);
+  }
 }
 
 // ——— CSS Classes ——— //
@@ -89,45 +121,55 @@
 .regular-white-22 {
   @include regular-white-22;
 }
+
 .bold-blue-22 {
   @include bold-blue-22;
 }
+
 .regular-spaceblue-15 {
   @include regular-spaceblue-15;
 }
+
 .subtext-white-12 {
   @include subtext-white-12;
 }
+
 .subtext-spaceblue-12 {
   @include subtext-spaceblue-12;
+}
+
+.subtext-spaceblue-8 {
+  @include subtext-spaceblue-8;
 }
 
 .subtext-red-12 {
   @include subtext-red-12;
 }
+
 .bold-blue-17 {
   @include bold-blue-17;
 }
+
 .bold-white-20 {
   @include bold-white-20;
 }
+
 .medium-white-20 {
   @include medium-white-20;
 }
+
 .regular-white-17 {
   @include regular-white-17;
 }
+
 .regular-white-15 {
   @include regular-white-15;
-}
-.regular-white-28 {
-  @include regular-white-28;
 }
 
 .regular-gray-15 {
   @include regular-gray-15;
 }
 
-.subtext-spaceblue-8 {
-  @include subtext-spaceblue-8;
+.regular-white-28 {
+  @include regular-white-28;
 }

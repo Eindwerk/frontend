@@ -14,6 +14,7 @@ export function middleware(request: NextRequest) {
     "/confirm-email",
     "/email-sent",
     "/welcome",
+    "/reset-password",
   ];
 
   const isPublic = publicPaths.some((path) => pathname.startsWith(path));

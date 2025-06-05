@@ -7,14 +7,16 @@ const Header = () => {
   const { count } = useNotification();
   return (
     <div className="header">
-      <Link href="/">
-        <div className="header__title">
-          <Text variant="bold-white-20">GROUNDPASS</Text>
-        </div>
-      </Link>
-      <Link href="/notifications">
-        <NotificationIcon count={count} />
-      </Link>
+      <div className="header__content">
+        <Link href="/">
+          <div className="header__title">
+            <Text variant="bold-white-20">GROUNDPASS</Text>
+          </div>
+        </Link>
+        <Link href="/notifications">
+          <NotificationIcon count={count} />
+        </Link>
+      </div>
     </div>
   );
 };
