@@ -1,5 +1,6 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import Input from "@/components/ui/input";
 import Link from "next/link";
 import Text from "@/components/ui/Text";
@@ -13,35 +14,55 @@ import Image from "next/image";
 import Logo from "@/assets/logo.png";
 
 export default function SignInForm() {
-  // STEP A: tell TS that fieldErrors is a ValidationErrors
+  const searchParams = useSearchParams();
+  // 1) Lees verify_token (en eventueel email) uit de URL
+  const pendingToken = searchParams.get("verify_token") ?? "";
+  const pendingEmail = searchParams.get("email") ?? "";
+
+  // STEP A: TS‐typing voor de initiële validatiestatus
   const initialState: ValidationMessage = {
     type: "",
     messages: [],
     fieldErrors: {} as ValidationErrors,
   };
 
-  // `liveState.fieldErrors` will be a ValidationErrors whenever the action returns it
   const [liveState, formAction, pending] = useActionState(signIn, initialState);
 
-  // Now we explicitly say that fieldName is one of the keys in ValidationErrors
   type FieldName = keyof ValidationErrors;
-  const getFieldError = (fieldName: FieldName) => {
-    return liveState.fieldErrors?.[fieldName];
-  };
+  const getFieldError = (fieldName: FieldName) =>
+    liveState.fieldErrors?.[fieldName];
 
   return (
     <Form action={formAction} className="form" noValidate>
+      {/* Verberg verify_token (en email) in het formulier */}
+      {pendingToken && (
+        <input type="hidden" name="verify_token" value={pendingToken} />
+      )}
+      {pendingEmail && (
+        <input type="hidden" name="email" value={pendingEmail} />
+      )}
+
       <div className="form__image">
         <Image src={Logo} alt="Groundpass Logo" />
       </div>
+
       <div className="form__header">
         <Text variant="medium-white-20">Sign in to your account</Text>
+
+        {/* Toon banner als we via de verificatielink komen */}
+        {pendingToken && (
+          <Text variant="subtext-green-12">
+            Je hebt op de verificatielink in je mail geklikt. Na inloggen wordt
+            je e-mailadres geverifieerd.
+          </Text>
+        )}
 
         <Input
           label="Email"
           type="email"
           name="email"
           required
+          defaultValue={pendingEmail}
           error={getFieldError("email")}
         />
 
@@ -57,8 +78,6 @@ export default function SignInForm() {
           <Link href="/forgot-password">Forgot your password?</Link>
         </Text>
 
-        {/* ONLY “global” errors go here. Because we returned an empty messages[]
-            when there were per-field errors, there will be no duplication. */}
         {liveState.messages.length > 0 && (
           <div className="form__errors">
             {liveState.messages.map((msg, idx) => (

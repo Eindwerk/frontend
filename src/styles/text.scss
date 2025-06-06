@@ -36,6 +36,14 @@
   }
 }
 
+@mixin subtext-green-12 {
+  @include regular-roboto(0.75rem, get-color(green), 0rem, 1rem);
+
+  @include desktop {
+    @include regular-roboto(0.875rem, get-color(green), 0rem, 1.125rem);
+  }
+}
+
 @mixin subtext-spaceblue-8 {
   @include regular-roboto(0.75rem, get-color(space), 0rem, 1rem);
 
@@ -144,6 +152,10 @@
 
 .subtext-red-12 {
   @include subtext-red-12;
+}
+
+.subtext-green-12 {
+  @include subtext-green-12;
 }
 
 .bold-blue-17 {
