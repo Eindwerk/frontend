@@ -15,9 +15,6 @@ export async function createAccount(
   initialState: ValidationMessage,
   formData: FormData
 ): Promise<ValidationMessage> {
-  console.log("Initial state:", initialState);
-  console.log("Form Data:", Object.fromEntries(formData.entries()));
-
   // 1) Extract fields
   const name = formData.get("name")?.toString().trim() || "";
   const username = formData.get("username")?.toString().trim() || "";

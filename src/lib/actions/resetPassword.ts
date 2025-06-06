@@ -15,9 +15,6 @@ export async function resetPassword(
   initialState: ValidationMessage,
   formData: FormData
 ): Promise<ValidationMessage> {
-  console.log("Initial state:", initialState);
-  console.log("Form Data:", Object.fromEntries(formData.entries()));
-
   // 1) Extract fields
   const email = formData.get("email")?.toString().trim() || "";
   const token = formData.get("token")?.toString().trim() || "";
