@@ -4,9 +4,9 @@ import ResetPasswordForm from "@/components/auth/ResetPasswordForm";
 export default async function ResetPasswordPage({
   searchParams,
 }: {
-  searchParams: Record<string, string | string[] | undefined>;
+  searchParams: Promise<{ token?: string; email?: string }>;
 }) {
-  const params = (await searchParams) as { token?: string; email?: string };
+  const params = await searchParams;
 
   if (!params.token || !params.email) {
     return redirect("/sign-in");
