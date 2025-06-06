@@ -1,6 +1,5 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
 import Input from "@/components/ui/input";
 import Link from "next/link";
 import Text from "@/components/ui/Text";
@@ -13,19 +12,23 @@ import { ValidationErrors } from "@/lib/validation/validateSignIn";
 import Image from "next/image";
 import Logo from "@/assets/logo.png";
 
-export default function SignInForm() {
-  const searchParams = useSearchParams();
-  // 1) Lees verify_token (en eventueel email) uit de URL
-  const pendingToken = searchParams.get("verify_token") ?? "";
-  const pendingEmail = searchParams.get("email") ?? "";
+interface SignInFormProps {
+  pendingToken: string;
+  pendingEmail: string;
+}
 
-  // STEP A: TS‐typing voor de initiële validatiestatus
+export default function SignInForm({
+  pendingToken,
+  pendingEmail,
+}: SignInFormProps) {
+  // 1) TS‐typing voor de initiële validatiestatus
   const initialState: ValidationMessage = {
     type: "",
     messages: [],
     fieldErrors: {} as ValidationErrors,
   };
 
+  // 2) Hook om de actie-state bij te houden
   const [liveState, formAction, pending] = useActionState(signIn, initialState);
 
   type FieldName = keyof ValidationErrors;
@@ -34,7 +37,9 @@ export default function SignInForm() {
 
   return (
     <Form action={formAction} className="form" noValidate>
-      {/* Verberg verify_token (en email) in het formulier */}
+      {/* 
+        3) Verborgen inputs ⟶ als er een token/email in de URL stond, worden ze nu via props doorgegeven. 
+      */}
       {pendingToken && (
         <input type="hidden" name="verify_token" value={pendingToken} />
       )}
@@ -50,7 +55,9 @@ export default function SignInForm() {
         <div className="form__header-text">
           <Text variant="medium-white-20">Sign in to your account</Text>
 
-          {/* Toon banner als we via de verificatielink komen */}
+          {/* 
+            4) Banner tonen als we via een verificatie-link komen 
+          */}
           {pendingToken && (
             <Text variant="subtext-green-12">
               Je hebt op de verificatielink in je mail geklikt. Na inloggen
