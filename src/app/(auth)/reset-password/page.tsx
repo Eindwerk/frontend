@@ -6,7 +6,6 @@ export default async function ResetPasswordPage({
 }: {
   searchParams: Record<string, string | string[] | undefined>;
 }) {
-  // Await de searchParams zodat je er veilig properties van kunt pakken:
   const params = (await searchParams) as { token?: string; email?: string };
 
   if (!params.token || !params.email) {
