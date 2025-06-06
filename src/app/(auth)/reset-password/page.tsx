@@ -1,55 +1,19 @@
-import Image from "next/image";
-import Text from "@/components/ui/Text";
-import Input from "@/components/ui/input";
-import Button from "@/components/ui/Button";
-import Logo from "@/assets/logo.png";
-import Link from "next/link";
-import Form from "next/form";
-import { resetPassword } from "@/lib/actions/resetPassword";
+// app/reset-password/page.tsx
+import { redirect } from "next/navigation";
+import ResetPasswordForm from "@/components/auth/ResetPasswordForm";
 
-export default async function ResetPasswordPage({
+export default function ResetPasswordPage({
   searchParams,
 }: {
-  searchParams: Promise<{ token?: string; email?: string }>;
+  searchParams: { token?: string; email?: string };
 }) {
-  const { token, email } = await searchParams;
+  // Als er GEEN token OF GEEN email in de query zit, redirect naar /sign-in
+  if (!searchParams.token || !searchParams.email) {
+    return redirect("/sign-in");
+  }
 
+  // Bestaat er wél een token én email? Laat dan de form‐component renderen:
   return (
-    <div className="reset-password-page">
-      <div className="reset-password-page__image">
-        <Image src={Logo} alt="Groundpass Logo" />
-      </div>
-
-      <Form action={resetPassword} className="form">
-        <div className="form__header">
-          <Text variant="medium-white-20">Choose a new password</Text>
-
-          <input type="hidden" name="token" value={token ?? ""} />
-          <input type="hidden" name="email" value={email ?? ""} />
-
-          <Input
-            label="New password"
-            type="password"
-            name="password"
-            required
-          />
-          <Input
-            label="Confirm password"
-            type="password"
-            name="password_confirmation"
-            required
-          />
-        </div>
-
-        <div className="form__footer">
-          <Button variant="primary" type="submit">
-            Reset password
-          </Button>
-          <Button variant="orange">
-            <Link href="/sign-in">Back</Link>
-          </Button>
-        </div>
-      </Form>
-    </div>
+    <ResetPasswordForm token={searchParams.token} email={searchParams.email} />
   );
 }

@@ -9,17 +9,6 @@
   align-items: center;
   height: 100%;
 
-  &__image {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 4rem;
-
-    img {
-      width: 5rem;
-      height: auto;
-    }
-  }
-
   // Form styles
   .form {
     width: 100%;
@@ -28,8 +17,30 @@
     justify-content: space-between;
     height: 100%;
 
+    &__image {
+      display: flex;
+      justify-content: center;
+
+      img {
+        width: 5rem;
+        height: auto;
+      }
+    }
+
     .input-wrapper {
       margin-top: 0.5rem;
+    }
+
+    &__forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      padding: 0.5rem;
+
+      &__errors {
+        display: flex;
+        flex-direction: column;
+      }
     }
 
     &__footer {

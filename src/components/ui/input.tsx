@@ -6,9 +6,16 @@ import "@/styles/_input.scss";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
+  error?: string;
 }
 
-const Input: React.FC<InputProps> = ({ label, value, onChange, ...props }) => {
+const Input: React.FC<InputProps> = ({
+  label,
+  value,
+  onChange,
+  error,
+  ...props
+}) => {
   const [isFocused, setIsFocused] = useState(false);
   const isFloating = isFocused || Boolean(value);
 
@@ -21,11 +28,17 @@ const Input: React.FC<InputProps> = ({ label, value, onChange, ...props }) => {
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         placeholder=" "
-        className="input-field"
+        aria-invalid={!!error}
+        className={`input-field ${error ? "input-field--error" : ""}`}
       />
       <div className={`input-label${isFloating ? " floating" : ""}`}>
         <Text variant="subtext-spaceblue-8">{label}</Text>
       </div>
+      {error && (
+        <div className="input-error">
+          <Text variant="subtext-red-12">{error}</Text>
+        </div>
+      )}
     </div>
   );
 };

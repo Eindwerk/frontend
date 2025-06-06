@@ -17,7 +17,8 @@
     "react-dom": "^19.0.0",
     "react-leaflet": "^5.0.0",
     "sass": "^1.89.0",
-    "sass-migrator": "^2.3.2"
+    "sass-migrator": "^2.3.2",
+    "vercel": "^42.3.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
