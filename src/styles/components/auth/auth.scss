@@ -51,5 +51,13 @@
       margin-top: 0.5rem;
       height: 6rem;
     }
+
+    &__header {
+      &-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
   }
 }

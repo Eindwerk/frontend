@@ -47,15 +47,17 @@ export default function SignInForm() {
       </div>
 
       <div className="form__header">
-        <Text variant="medium-white-20">Sign in to your account</Text>
+        <div className="form__header-text">
+          <Text variant="medium-white-20">Sign in to your account</Text>
 
-        {/* Toon banner als we via de verificatielink komen */}
-        {pendingToken && (
-          <Text variant="subtext-green-12">
-            Je hebt op de verificatielink in je mail geklikt. Na inloggen wordt
-            je e-mailadres geverifieerd.
-          </Text>
-        )}
+          {/* Toon banner als we via de verificatielink komen */}
+          {pendingToken && (
+            <Text variant="subtext-green-12">
+              Je hebt op de verificatielink in je mail geklikt. Na inloggen
+              wordt je e-mailadres geverifieerd.
+            </Text>
+          )}
+        </div>
 
         <Input
           label="Email"
