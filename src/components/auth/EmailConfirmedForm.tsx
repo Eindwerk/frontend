@@ -16,7 +16,6 @@ export default function EmailConfirmedForm({
   token,
   email,
 }: EmailConfirmedFormProps) {
-  // Net zoals bij ResetPasswordForm: typ je initialState
   const initialState: ValidationMessage = {
     type: "",
     messages: [],
@@ -30,22 +29,17 @@ export default function EmailConfirmedForm({
 
   return (
     <Form action={formAction} className="form" noValidate>
-      {/* 
-        Net als bij ResetPasswordForm: we weten dat token + email 
-        altijd bestaan (want de page redirect als ze ontbreken), 
-        dus gewoon hidden inputs maken 
-      */}
+      {/* Hidden inputs: we weten dat via de pagina ‘token’/‘email’ altijd meegeleverd worden */}
       <input type="hidden" name="token" value={token} />
       <input type="hidden" name="email" value={email} />
 
       <div className="form__header text-center mb-6">
         <Text variant="medium-white-20">Bevestig je e-mailadres</Text>
         <Text variant="subtext-white-12">
-          Klik op de knop hieronder om je account definitief te activeren.
+          Klik op de knop hieronder om je account te activeren.
         </Text>
       </div>
 
-      {/* Toon globale foutmeldingen (zoals invalid token) */}
       {liveState.messages.length > 0 && (
         <div className="form__errors mb-4">
           {liveState.messages.map((msg, idx) => (

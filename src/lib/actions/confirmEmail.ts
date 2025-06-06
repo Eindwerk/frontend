@@ -12,7 +12,7 @@ export async function confirmEmail(
   const token = formData.get("token")?.toString().trim() || "";
   const email = formData.get("email")?.toString().trim() || "";
 
-  // 2) Simpele validatie: beide velden moeten aanwezig zijn
+  // 2) Controleren of ze beide bestaan
   if (!token || !email) {
     return {
       type: "error",
@@ -21,10 +21,10 @@ export async function confirmEmail(
     };
   }
 
-  // 3) Roep je helper aan om te verifiëren bij de externe API
+  // 3) Roep je helper aan (die naar ‘POST /email/verify’ stuurt)
   const { success, message } = await verifyEmail(token, email);
 
-  // 4) Als de API‐call faalt, toon dan de foutmelding
+  // 4) Als verificatie faalt, geef de foutmelding terug
   if (!success) {
     return {
       type: "error",
@@ -33,10 +33,10 @@ export async function confirmEmail(
     };
   }
 
-  // 5) Bij succes redirect je naar de loginpagina (met eventueel voorgevulde e-mail)
+  // 5) Bij succes redirect naar login, e-mail in query meegeven
   redirect(`/sign-in?email=${encodeURIComponent(email)}`);
 
-  // (de redirect gooit, dus onderstaande code wordt nooit écht gerund)
+  // (wordt niet bereikt omdat redirect() gooit)
   return {
     type: "success",
     messages: [],
