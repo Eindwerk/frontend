@@ -19,8 +19,6 @@ export async function signIn(
   // 1) Extract fields
   const email = formData.get("email")?.toString().trim() || "";
   const password = formData.get("password")?.toString() || "";
-  // 2) Haal verify_token op (indien aanwezig)
-  const verifyToken = formData.get("verify_token")?.toString() || "";
 
   const values: SignInFields = { email, password };
 
@@ -102,31 +100,6 @@ export async function signIn(
     };
   }
 
-  // 8) Als er een verifyToken is, roep dan het nieuwe verify‐endpoint aan
-  if (verifyToken) {
-    const verifyRes = await fetch(`${baseUrl}email/verify`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "X-API-KEY": apiKey,
-        // Bearer‐sanctum token (Sanctum herkent Bearer‐token ook)
-        Authorization: `Bearer ${apiToken}`,
-      },
-      body: JSON.stringify({ verify_token: verifyToken }),
-      cache: "no-store",
-    });
-
-    // Optioneel: lees foutbericht als de token ongeldig is
-    if (!verifyRes.ok) {
-      const errJson = await verifyRes.json().catch(() => null);
-      console.warn("Verify‐fout:", errJson?.message || "Unknown error");
-      // Je kunt hier eventueel een ValidationMessage teruggeven:
-      // return { type: "error", messages: [errJson?.message], fieldErrors: {} };
-      // Maar meestal willen we gewoon doorredirecten naar "/"
-    }
-  }
-
   // 9) Sla het token als HTTP‐only cookie op
   const cookieStore = await cookies();
   cookieStore.set("token", apiToken, {
@@ -138,11 +111,4 @@ export async function signIn(
 
   // 10) Redirect naar home (of dashboard)
   redirect("/");
-
-  // Dit wordt nooit bereikt, omdat redirect() gooit
-  return {
-    type: "success",
-    messages: [],
-    fieldErrors: {},
-  };
 }
