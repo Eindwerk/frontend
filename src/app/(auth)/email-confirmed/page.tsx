@@ -1,20 +1,22 @@
+// app/(auth)/email-confirmed/page.tsx
 import { redirect } from "next/navigation";
-import EmailConfirmed from "@/components/auth/EmailConfirmed.tsx";
-import { verifyEmail } from "@/lib/actions/verifyEmail";
+import EmailConfirmedForm from "@/components/auth/EmailConfirmedForm";
 
 export default async function EmailConfirmedPage({
   searchParams,
 }: {
-  searchParams: Promise<{ token?: string; email?: string }>;
+  searchParams: Promise<{ verify_token?: string; email?: string }>;
 }) {
-  const { token, email } = await searchParams;
+  const params = await searchParams;
+  const token = params.verify_token;
+  const email = params.email;
 
+  // Als er géén verify_token of email in de URL staan → redirect naar home
   if (!token || !email) {
     redirect("/");
     return null;
   }
 
-  const { success, message } = await verifyEmail(token, email);
-
-  return <EmailConfirmed success={success} email={email} message={message} />;
+  // Anders toon je het client-component met formulier
+  return <EmailConfirmedForm token={token} email={email} />;
 }

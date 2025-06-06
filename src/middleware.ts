@@ -11,11 +11,11 @@ export function middleware(request: NextRequest) {
     "/sign-in",
     "/create-an-account",
     "/forgot-password",
-    "/confirm-email",
+    "/email-confirmed",
     "/email-sent",
+    "/resend-verification",
     "/welcome",
     "/reset-password",
-    "/email-confirmed",
   ];
 
   const isPublic = publicPaths.some((path) => pathname.startsWith(path));
