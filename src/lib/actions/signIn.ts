@@ -87,10 +87,22 @@ export async function signIn(
     };
   }
 
-  // 6) Bij succesvolle login: haal token
+  // 6) Bij succesvolle login: haal token én verified‐status
   const apiToken: string = data.token;
+  const isVerified: boolean = data.verified;
 
-  // 7) Als er een verifyToken is, roep dan het nieuwe verify‐endpoint aan
+  // 7) Als verified false is, geef direct een foutmelding terug (en log niet in)
+  if (!isVerified) {
+    return {
+      type: "error",
+      messages: [
+        "Je e-mailadres is nog niet geverifieerd. Controleer je mailbox!",
+      ],
+      fieldErrors: {},
+    };
+  }
+
+  // 8) Als er een verifyToken is, roep dan het nieuwe verify‐endpoint aan
   if (verifyToken) {
     const verifyRes = await fetch(`${baseUrl}email/verify`, {
       method: "POST",
@@ -98,7 +110,7 @@ export async function signIn(
         "Content-Type": "application/json",
         Accept: "application/json",
         "X-API-KEY": apiKey,
-        // Bearer-sanctum token (Sanctum herkent Bearer‐token ook)
+        // Bearer‐sanctum token (Sanctum herkent Bearer‐token ook)
         Authorization: `Bearer ${apiToken}`,
       },
       body: JSON.stringify({ verify_token: verifyToken }),
@@ -115,7 +127,7 @@ export async function signIn(
     }
   }
 
-  // 8) Sla het token als HTTP‐only cookie op
+  // 9) Sla het token als HTTP‐only cookie op
   const cookieStore = await cookies();
   cookieStore.set("token", apiToken, {
     httpOnly: true,
@@ -124,7 +136,7 @@ export async function signIn(
     maxAge: 60 * 60 * 24 * 7, // 1 week
   });
 
-  // 9) Redirect naar home (of dashboard)
+  // 10) Redirect naar home (of dashboard)
   redirect("/");
 
   // Dit wordt nooit bereikt, omdat redirect() gooit
