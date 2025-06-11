@@ -1,39 +1,41 @@
 "use client";
 
-import EditableName from "./EditableName";
-import FollowButtonForm from "./FollowButtonForm";
-import { Link, LandmarkIcon } from "lucide-react";
-import type { ProfileVariant } from "@/types/ProfileVariant";
+import { useState } from "react";
+import { EditableName } from "./EditableName";
+import { FollowButtonForm } from "./FollowButtonForm";
 
-interface Props {
-  own: boolean;
-  variant: ProfileVariant;
-  isEditing: boolean;
-  setIsEditing: (value: boolean) => void;
-}
-
-export default function ProfileInfoClient({
+export function ProfileInfoClient({
   own,
-  variant,
+  username,
   isEditing,
   setIsEditing,
-}: Props) {
-  const icon =
-    variant === "team" ? (
-      <Link strokeWidth={1.5} />
-    ) : variant === "stadium" ? (
-      <LandmarkIcon strokeWidth={1.5} />
-    ) : null;
+  profileImage,
+  bannerImage,
+}: {
+  own: boolean;
+  username: string;
+  isEditing: boolean;
+  setIsEditing: (val: boolean) => void;
+  profileImage?: File;
+  bannerImage?: File;
+}) {
+  const [newName, setNewName] = useState(username);
 
   return (
     <div className="profile__info-content">
-      <EditableName isEditing={isEditing} />
+      <EditableName
+        isEditing={isEditing}
+        newName={newName}
+        setNewName={setNewName}
+      />
       <div className="profile__info-row">
-        {icon && <div className="profile__info-icon">{icon}</div>}
         <FollowButtonForm
           own={own}
           isEditing={isEditing}
           setIsEditing={setIsEditing}
+          newName={newName}
+          profileImage={profileImage}
+          bannerImage={bannerImage}
         />
       </div>
     </div>

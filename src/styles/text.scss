@@ -20,6 +20,14 @@
   }
 }
 
+@mixin bold-space-20 {
+  @include bold-roboto(1.25rem, get-color(space), -0.02rem, 1.75rem);
+
+  @include desktop {
+    @include bold-roboto(1.5rem, get-color(space), -0.02rem, 2rem);
+  }
+}
+
 @mixin regular-spaceblue-15 {
   @include regular-roboto(0.938rem, get-color(space), 0rem, 1.375rem);
 
@@ -164,6 +172,10 @@
 
 .bold-white-20 {
   @include bold-white-20;
+}
+
+.bold-space-20 {
+  @include bold-space-20;
 }
 
 .medium-white-20 {

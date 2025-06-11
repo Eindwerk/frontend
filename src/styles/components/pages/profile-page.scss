@@ -14,23 +14,26 @@
     width: 100%;
     flex-shrink: 0;
     margin-bottom: 0.5rem;
+    position: relative;
   }
 
-  &__banner {
+  &__banner-wrapper {
+    position: relative;
     width: 100%;
-    height: 8rem;
+    aspect-ratio: 3/1;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       border-radius: 0.5rem 0.5rem 0 0;
+      display: block;
     }
   }
 
-  &__avatar {
+  &__avatar-wrapper {
     position: absolute;
-    top: 4.5rem;
+    top: 5rem;
     left: 50%;
     transform: translateX(-50%);
     width: 5rem;
@@ -38,16 +41,44 @@
     border-radius: 50%;
     overflow: hidden;
     border: 1px solid get-color(space);
+    z-index: 3;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
+      border-radius: 50%;
     }
   }
 
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    will-change: transform;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+    z-index: 2;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: inherit;
+  }
+
+  &__avatar-overlay {
+    border-radius: 50%;
+  }
+
   &__info {
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     padding: 0 1rem;
     width: 100%;
     display: flex;
@@ -58,6 +89,8 @@
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
+      width: 100%;
+      max-width: 80%;
     }
 
     &-row {
@@ -88,9 +121,7 @@
   &__scroll-area {
     flex: 1;
     width: 100%;
-    max-height: calc(
-      100dvh - 16rem
-    ); // adjust depending on banner + info height
+    max-height: calc(100dvh - 16rem);
     display: flex;
     justify-content: center;
     overflow-y: auto;

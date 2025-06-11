@@ -3,13 +3,24 @@
 import Text from "../ui/Text";
 import Input from "../ui/input";
 
-export default function EditableName({ isEditing }: { isEditing: boolean }) {
-  // In real case, lift `name` state too if needed
-  const name = "Cédric Van Hoorebeke";
-
+export function EditableName({
+  isEditing,
+  newName,
+  setNewName,
+}: {
+  isEditing: boolean;
+  newName: string;
+  setNewName: (val: string) => void;
+}) {
   return isEditing ? (
-    <Input label="Name" defaultValue={name} />
+    <div className="editable-name">
+      <Input
+        label="Name"
+        value={newName}
+        onChange={(e) => setNewName(e.target.value)}
+      />
+    </div>
   ) : (
-    <Text variant="bold-blue-17">{name}</Text>
+    <Text variant="bold-blue-17">{newName}</Text>
   );
 }

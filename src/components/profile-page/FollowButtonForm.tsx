@@ -1,40 +1,54 @@
 "use client";
 
-import { useActionState } from "react";
-import { signOut } from "@/lib/actions/signOut"; // <== importeren
+import { startTransition, useActionState } from "react";
+import { signOut } from "@/lib/actions/signOut";
+import { updateProfile } from "@/lib/actions/updateProfile";
 import { toggleFollow } from "@/server-actions/toggleFollow";
 import Button from "../ui/Button";
 
-interface FollowButtonFormProps {
-  own: boolean;
-  isEditing?: boolean;
-  setIsEditing?: (val: boolean) => void;
-}
-
-const initialFollowState = false;
-
-export default function FollowButtonForm({
+export function FollowButtonForm({
   own,
-  isEditing = false,
+  isEditing,
   setIsEditing,
-}: FollowButtonFormProps) {
-  const handleToggleEdit = () => {
-    if (setIsEditing) setIsEditing(!isEditing);
-  };
-
+  newName,
+  profileImage,
+  bannerImage,
+}: {
+  own: boolean;
+  isEditing: boolean;
+  setIsEditing: (val: boolean) => void;
+  newName: string;
+  profileImage?: File;
+  bannerImage?: File;
+}) {
   const [isFollowing, formAction, isPending] = useActionState(
     toggleFollow,
-    initialFollowState
+    false
   );
+
+  const handleEditOrSave = () => {
+    if (isEditing) {
+      startTransition(async () => {
+        const result = await updateProfile(newName, profileImage, bannerImage);
+
+        if (result.success) {
+          setIsEditing(false);
+          console.log(result.message);
+        } else {
+          console.error("Save failed:", result.message);
+        }
+      });
+    } else {
+      setIsEditing(true);
+    }
+  };
 
   if (own) {
     return (
       <>
-        <Button type="button" variant="primary" onClick={handleToggleEdit}>
+        <Button type="button" variant="primary" onClick={handleEditOrSave}>
           {isEditing ? "Save" : "Edit"}
         </Button>
-
-        {/* Logout button that triggers server action */}
         <form action={signOut}>
           <Button type="submit" variant="orange">
             Logout
@@ -45,10 +59,7 @@ export default function FollowButtonForm({
   }
 
   return (
-    <form
-      action={formAction}
-      className="profile-page__info__buttons__follow__form"
-    >
+    <form action={formAction} className="profile__follow-form">
       <Button
         type="submit"
         variant={isFollowing ? "orange" : "primary"}

@@ -12,6 +12,7 @@ type TextVariant =
   | "subtext-green-12"
   | "bold-blue-17"
   | "bold-white-20"
+  | "bold-space-20"
   | "medium-white-20"
   | "regular-white-17"
   | "regular-white-15"

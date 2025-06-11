@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { ProfileVariant } from "@/types/ProfileVariant";
 import { validVariants } from "@/types/ProfileVariant";
 import ProfilePageClient from "@/components/profile-page/ProfilePageClient";
+import { getUserMe } from "@/lib/actions/getUserMe";
 
 export const dynamicParams = true;
 
@@ -12,11 +13,15 @@ const ProfilePage = async ({
 }) => {
   const { variant } = await params;
 
+  // Ongeldig profieltype? 404
   if (!validVariants.includes(variant as ProfileVariant)) {
     notFound();
   }
 
-  return <ProfilePageClient variant={variant as ProfileVariant} />;
+  // Als het om je eigen profiel gaat: haal gebruiker op via beveiligde API
+  const user = variant === "my-profile" ? await getUserMe() : null;
+
+  return <ProfilePageClient variant={variant as ProfileVariant} user={user} />;
 };
 
 export default ProfilePage;
