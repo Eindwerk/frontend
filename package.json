@@ -16,9 +16,11 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-leaflet": "^5.0.0",
+    "react-leaflet-markercluster": "^5.0.0-rc.0",
     "sass": "^1.89.0",
     "sass-migrator": "^2.3.2",
-    "vercel": "^42.3.0"
+    "swr": "^2.3.3",
+    "vercel": "^25.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -27,6 +29,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-leaflet": "^2.8.3",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "typescript": "^5"

@@ -32,9 +32,9 @@ export default function AvatarImage({
         className="profile__avatar-image"
         src={src}
         alt="Profile Photo"
-        width={80}
-        height={80}
-        style={{ objectFit: "cover", borderRadius: "50%" }}
+        width={50}
+        height={50}
+        priority
       />
       {isEditing && (
         <>

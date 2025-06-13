@@ -1,6 +1,7 @@
 // Import global font and reset styles
 @use "./fonts.scss" as *;
 @use "./base.scss" as *;
+@use "./clustmarkers.scss" as *;
 
 // Import core design tokens if needed (optional, explained below)
 @use "./tokens.scss" as *;

@@ -1,21 +1,19 @@
 import { useProfileImage } from "@/hooks/useProfileImage";
-import type { User } from "@/types/user";
+import type { ProfileData } from "@/types/profileData";
 
-const EMPTY_USER: User = {
-  id: "",
+const EMPTY_USER: ProfileData = {
   name: "",
   username: "",
-  email: "",
-  profile_image: null,
-  banner_image: null,
+  profile_image: "",
+  banner_image: "",
 };
 
-export function useProfileInfo(user: User | null) {
+export function useProfileInfo(user: ProfileData | null) {
   const safeUser = user ?? EMPTY_USER;
 
   const cleanedUser = {
-    profile_image: safeUser.profile_image ?? "",
-    banner_image: safeUser.banner_image ?? "",
+    profile_image: safeUser.profile_image || "",
+    banner_image: safeUser.banner_image || "",
   };
 
   const {
@@ -35,6 +33,6 @@ export function useProfileInfo(user: User | null) {
     setPreviewBanner,
     profileInputRef,
     bannerInputRef,
-    username: user?.username || "",
+    username: safeUser.username,
   };
 }

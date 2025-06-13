@@ -14,13 +14,15 @@
     width: 100%;
     flex-shrink: 0;
     margin-bottom: 0.5rem;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   &__banner-wrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 3/1;
+    height: 10rem;
 
     img {
       width: 100%;
@@ -32,23 +34,22 @@
   }
 
   &__avatar-wrapper {
-    position: absolute;
-    top: 5rem;
-    left: 50%;
-    transform: translateX(-50%);
+    display: grid;
+    place-items: center;
     width: 5rem;
     height: 5rem;
     border-radius: 50%;
     overflow: hidden;
     border: 1px solid get-color(space);
     z-index: 3;
+    margin-top: -3rem;
+    background-color: get-color(secondary);
 
     img {
+      object-fit: cover;
       width: 100%;
       height: 100%;
-      object-fit: cover;
       display: block;
-      border-radius: 50%;
     }
   }
 
@@ -74,11 +75,26 @@
   }
 
   &__avatar-overlay {
+    position: relative;
+    grid-area: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    will-change: transform;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 500;
     border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    width: 5rem;
+    height: 5rem;
   }
 
   &__info {
-    margin-top: 2.5rem;
+    margin-top: 0.5rem;
     padding: 0 1rem;
     width: 100%;
     display: flex;
@@ -90,7 +106,7 @@
       align-items: center;
       gap: 0.5rem;
       width: 100%;
-      max-width: 80%;
+      max-width: 15rem;
     }
 
     &-row {

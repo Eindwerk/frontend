@@ -1,7 +1,9 @@
-// next.config.ts
 const nextConfig = {
   experimental: {
     appDir: true,
+    serverActions: {
+      bodySizeLimit: "20mb",
+    },
   },
   images: {
     domains: ["admin.groundpass.be"],

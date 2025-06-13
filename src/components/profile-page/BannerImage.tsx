@@ -35,6 +35,7 @@ export default function BannerImage({
         width={800}
         height={300}
         style={{ objectFit: "cover" }}
+        priority
       />
       {isEditing && (
         <>

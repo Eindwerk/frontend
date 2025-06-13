@@ -4,13 +4,15 @@ import BannerImage from "./BannerImage";
 import AvatarImage from "./AvatarImage";
 
 import { useProfileInfo } from "@/hooks/useProfileInfo";
-import type { User } from "@/types/user";
+import { useTeamInfo } from "@/hooks/ useTeamInfo";
+import { useStadiumInfo } from "@/hooks/useStadiumInfo";
+import type { ProfileData } from "@/types/profileData";
 
 interface ProfileInfoProps {
   variant: ProfileVariant;
   isEditing: boolean;
   setIsEditing: (value: boolean) => void;
-  user: User | null;
+  user: ProfileData | null;
 }
 
 export function ProfileInfo({
@@ -21,6 +23,12 @@ export function ProfileInfo({
 }: ProfileInfoProps) {
   const isOwnProfile = variant === "my-profile";
 
+  // Alle hooks worden altijd aangeroepen
+  const profile = useProfileInfo(user);
+  const team = useTeamInfo(user);
+  const stadium = useStadiumInfo(user);
+
+  // Selecteer juiste resultaat
   const {
     isReady,
     profileSrc,
@@ -30,7 +38,7 @@ export function ProfileInfo({
     profileInputRef,
     bannerInputRef,
     username,
-  } = useProfileInfo(user);
+  } = variant === "team" ? team : variant === "stadium" ? stadium : profile;
 
   if (!isReady) return null;
 

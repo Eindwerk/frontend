@@ -4,11 +4,11 @@ import { useState } from "react";
 import { ProfileVariant } from "@/types/ProfileVariant";
 import { ProfileInfo } from "./ProfileInfo";
 import PostGrid from "./PostGrid";
-import type { User } from "@/types/user";
+import type { ProfileData } from "@/types/profileData";
 
 interface ProfilePageClientProps {
   variant: ProfileVariant;
-  user: User | null;
+  user: ProfileData | null;
 }
 
 const ProfilePageClient = ({ variant, user }: ProfilePageClientProps) => {
