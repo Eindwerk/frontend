@@ -11,14 +11,15 @@ export function middleware(request: NextRequest) {
   }
 
   const publicPaths = [
-    "/sign-in",
+    "/confirm-email",
     "/create-an-account",
-    "/forgot-password",
     "/email-confirmed",
     "/email-sent",
+    "/forgot-password",
+    "/reset-password",
+    "/sign-in",
     "/resend-verification",
     "/welcome",
-    "/reset-password",
   ];
 
   const isPublic = publicPaths.some(

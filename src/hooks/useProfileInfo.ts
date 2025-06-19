@@ -2,6 +2,7 @@ import { useProfileImage } from "./useProfileImage";
 import type { ProfileData } from "@/types/profileData";
 
 const EMPTY_USER: ProfileData = {
+  id: 0,
   name: "",
   username: "",
   profile_image: "",

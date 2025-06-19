@@ -4,11 +4,16 @@ import Button from "@/components/ui/Button";
 import GroundpassLogo from "@/assets/logo.png";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Welcome to Groundpass",
+  description: "Unlock the stadium, share the passion",
+};
+
 const WelcomePage = () => {
   return (
     <div className="welcome-page">
       <div className="welcome-page__image">
-        <Image src={GroundpassLogo} alt="Groundpass Logo" />
+        <Image src={GroundpassLogo} alt="Groundpass Logo" priority />
       </div>
 
       <div className="welcome-page__text">
@@ -18,7 +23,7 @@ const WelcomePage = () => {
 
         <div className="description">
           <Text variant="regular-gray-15">
-            Your journey to seamless travel starts here.
+            Unlock the stadium, share the passion
           </Text>
         </div>
       </div>

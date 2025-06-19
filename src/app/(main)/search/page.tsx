@@ -1,6 +1,11 @@
 import SearchList from "@/components/searchbar/SearchList";
 import SearchForm from "@/components/searchbar/SearchForm";
 
+export const metadata = {
+  title: "Search",
+  description: "Search for posts, users, teams, and stadiums",
+};
+
 const SearchPage = async ({
   searchParams,
 }: {

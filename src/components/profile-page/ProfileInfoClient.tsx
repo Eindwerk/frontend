@@ -11,6 +11,9 @@ export function ProfileInfoClient({
   setIsEditing,
   profileImage,
   bannerImage,
+  userId,
+  followableType,
+  alreadyFollowed,
 }: {
   own: boolean;
   username: string;
@@ -18,6 +21,9 @@ export function ProfileInfoClient({
   setIsEditing: (val: boolean) => void;
   profileImage?: File;
   bannerImage?: File;
+  userId?: number;
+  followableType?: string;
+  alreadyFollowed?: boolean;
 }) {
   const [newName, setNewName] = useState(username);
 
@@ -30,12 +36,15 @@ export function ProfileInfoClient({
       />
       <div className="profile__info-row">
         <FollowButtonForm
+          userId={userId}
+          followableType={followableType}
           own={own}
           isEditing={isEditing}
           setIsEditing={setIsEditing}
           newName={newName}
           profileImage={profileImage}
           bannerImage={bannerImage}
+          alreadyFollowed={alreadyFollowed}
         />
       </div>
     </div>

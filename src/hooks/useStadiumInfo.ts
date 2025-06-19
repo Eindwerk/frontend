@@ -2,6 +2,7 @@ import { useStadiumImage } from "@/hooks/useStadiumImage";
 import type { ProfileData } from "@/types/profileData";
 
 const EMPTY_STADIUM: ProfileData = {
+  id: 0,
   name: "",
   username: "",
   profile_image: "",

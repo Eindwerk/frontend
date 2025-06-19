@@ -11,12 +11,14 @@ interface ProfilePageClientProps {
   variant: ProfileVariant;
   user: ProfileData | null;
   posts?: Post[];
+  alreadyFollowed?: boolean;
 }
 
 const ProfilePageClient = ({
   variant,
   user,
   posts,
+  alreadyFollowed,
 }: ProfilePageClientProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
@@ -36,6 +38,7 @@ const ProfilePageClient = ({
         isEditing={isEditing}
         setIsEditing={setIsEditing}
         user={sanitizedUser}
+        alreadyFollowed={alreadyFollowed}
       />
       <PostGrid isEditing={isEditing} posts={posts} />
     </div>

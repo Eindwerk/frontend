@@ -13,6 +13,7 @@ interface ProfileInfoProps {
   isEditing: boolean;
   setIsEditing: (value: boolean) => void;
   user: ProfileData | null;
+  alreadyFollowed?: boolean;
 }
 
 export function ProfileInfo({
@@ -20,6 +21,7 @@ export function ProfileInfo({
   isEditing,
   setIsEditing,
   user,
+  alreadyFollowed,
 }: ProfileInfoProps) {
   const isOwnProfile = variant === "my-profile";
 
@@ -41,8 +43,6 @@ export function ProfileInfo({
   } = variant === "team" ? team : variant === "stadium" ? stadium : profile;
 
   if (!isReady) return null;
-
-  console.log(profileSrc);
 
   return (
     <div className="profile__header">
@@ -66,6 +66,9 @@ export function ProfileInfo({
           setIsEditing={setIsEditing}
           profileImage={profileInputRef.current?.files?.[0]}
           bannerImage={bannerInputRef.current?.files?.[0]}
+          userId={user?.id}
+          followableType={variant}
+          alreadyFollowed={alreadyFollowed}
         />
       </div>
     </div>

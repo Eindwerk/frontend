@@ -1,11 +1,14 @@
 "use client";
 
-import { useActionState } from "react";
-import { confirmEmail } from "@/lib/actions/confirmEmail";
-import { ValidationMessage } from "@/types/types";
+import Image from "next/image";
+import Link from "next/link";
 import Form from "next/form";
 import Text from "@/components/ui/Text";
 import Button from "@/components/ui/Button";
+import Logo from "@/assets/logo.png";
+import { useActionState } from "react";
+import { confirmEmail } from "@/lib/actions/confirmEmail";
+import type { ValidationMessage } from "@/types/types";
 
 interface EmailConfirmedFormProps {
   token: string;
@@ -29,19 +32,23 @@ export default function EmailConfirmedForm({
 
   return (
     <Form action={formAction} className="form" noValidate>
-      {/* Hidden inputs: we weten dat via de pagina ‘token’/‘email’ altijd meegeleverd worden */}
-      <input type="hidden" name="token" value={token} />
-      <input type="hidden" name="email" value={email} />
+      <div className="form__image">
+        <Image src={Logo} alt="Groundpass Logo" />
+      </div>
 
-      <div className="form__header text-center mb-6">
-        <Text variant="medium-white-20">Bevestig je e-mailadres</Text>
+      <div className="form__email-confirmed">
+        <Text variant="medium-white-20">Confirm Email</Text>
         <Text variant="subtext-white-12">
-          Klik op de knop hieronder om je account te activeren.
+          Click the button below to activate your account.
         </Text>
+
+        {/* Hidden inputs */}
+        <input type="hidden" name="token" value={token} />
+        <input type="hidden" name="email" value={email} />
       </div>
 
       {liveState.messages.length > 0 && (
-        <div className="form__errors mb-4">
+        <div className="form__errors">
           {liveState.messages.map((msg, idx) => (
             <Text key={idx} variant="subtext-red-12">
               {msg}
@@ -50,9 +57,12 @@ export default function EmailConfirmedForm({
         </div>
       )}
 
-      <div className="form__footer text-center">
+      <div className="form__footer">
         <Button type="submit" disabled={pending}>
-          {pending ? "Bezig met bevestigen…" : "Bevestig e-mailadres"}
+          {pending ? "Confirming…" : "Confirm Email"}
+        </Button>
+        <Button variant="orange" type="button">
+          <Link href="/sign-in">Back</Link>
         </Button>
       </div>
     </Form>

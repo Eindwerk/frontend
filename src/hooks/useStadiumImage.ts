@@ -1,10 +1,15 @@
 import { useState, useRef, RefObject } from "react";
 
+const FALLBACK_LOGO =
+  "https://groundpass-storage.ams3.digitaloceanspaces.com/fallback/fall-back-profile-image.png";
+const FALLBACK_BANNER =
+  "https://groundpass-storage.ams3.digitaloceanspaces.com/fallback/fall-back-banner-image.png";
+
 export function useStadiumImage(stadium: {
-  banner_image: string;
-  logo_url: string;
+  banner_image: string | null | undefined;
+  logo_url: string | null | undefined;
 }) {
-  const BASE_URL = process.env.ASSET_URL || "";
+  const baseUrl = process.env.NEXT_PUBLIC_ASSET_URL || "";
 
   const [previewLogo, setPreviewLogo] = useState<string | null>(null);
   const [previewBanner, setPreviewBanner] = useState<string | null>(null);
@@ -17,23 +22,19 @@ export function useStadiumImage(stadium: {
   ) as RefObject<HTMLInputElement>;
 
   const getImageSrc = (val: string | undefined | null, fallback: string) => {
-    if (!val || !val.trim()) {
-      return `${BASE_URL}/${fallback}`;
+    if (!val || typeof val !== "string" || val.trim() === "") {
+      return fallback;
     }
-    if (/^https?:\/\//i.test(val.trim())) {
-      return val.trim();
-    }
-    return `${BASE_URL}/${val.trim()}`;
+    return val.trim();
   };
 
-  const logoSrc =
-    previewLogo || getImageSrc(stadium?.logo_url, "img/profile.jpg");
+  const logoSrc = previewLogo || getImageSrc(stadium?.logo_url, FALLBACK_LOGO);
   const bannerSrc =
-    previewBanner || getImageSrc(stadium?.banner_image, "img/banner.jpg");
+    previewBanner || getImageSrc(stadium?.banner_image, FALLBACK_BANNER);
 
   return {
-    logoSrc,
-    bannerSrc,
+    logoSrc: baseUrl + logoSrc,
+    bannerSrc: baseUrl + bannerSrc,
     previewLogo,
     previewBanner,
     setPreviewLogo,

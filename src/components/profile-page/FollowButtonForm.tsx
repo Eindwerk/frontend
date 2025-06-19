@@ -3,7 +3,7 @@
 import { startTransition, useActionState } from "react";
 import { signOut } from "@/lib/actions/signOut";
 import { updateProfile } from "@/lib/actions/updateProfile";
-import { toggleFollow } from "@/server-actions/toggleFollow";
+import { toggleFollow } from "@/lib/actions/toggleFollow";
 import Button from "../ui/Button";
 import { useRouter } from "next/navigation";
 
@@ -14,6 +14,9 @@ export function FollowButtonForm({
   newName,
   profileImage,
   bannerImage,
+  userId,
+  alreadyFollowed,
+  followableType,
 }: {
   own: boolean;
   isEditing: boolean;
@@ -21,13 +24,18 @@ export function FollowButtonForm({
   newName: string;
   profileImage?: File;
   bannerImage?: File;
+  userId?: number;
+  alreadyFollowed?: boolean;
+  followableType?: string;
 }) {
   const router = useRouter();
 
-  const [isFollowing, formAction, isPending] = useActionState(
-    toggleFollow,
-    false
-  );
+  const [state, formAction, isPending] = useActionState(toggleFollow, {
+    success: !!alreadyFollowed,
+    message: "",
+  });
+
+  const isFollowing = state.success;
 
   const handleEditOrSave = () => {
     if (isEditing) {
@@ -36,7 +44,6 @@ export function FollowButtonForm({
 
         if (result.success) {
           setIsEditing(false);
-          console.log(result.message);
           router.push("/profile/my-profile");
         } else {
           console.error("Save failed:", result.message);
@@ -64,6 +71,9 @@ export function FollowButtonForm({
 
   return (
     <form action={formAction} className="profile__follow-form">
+      <input type="hidden" name="followable_id" value={userId} />
+      <input type="hidden" name="followable_type" value={followableType} />
+
       <Button
         type="submit"
         variant={isFollowing ? "orange" : "primary"}

@@ -4,6 +4,7 @@ import { ArrowRightIcon, Bell, HeartIcon } from "lucide-react";
 import Text from "../ui/Text";
 import Link from "next/link";
 import { Notification } from "@/types/notification";
+import { deleteNotification } from "@/lib/actions/deleteNotification";
 
 const UserNotificationCard: React.FC<Notification> = ({
   type,
@@ -33,7 +34,14 @@ const UserNotificationCard: React.FC<Notification> = ({
   };
 
   return (
-    <Link href={`/post-detail/${post_id}`}>
+    <Link
+      href={`/post-detail/${post_id}`}
+      onClick={() => {
+        if (typeof post_id === "number") {
+          deleteNotification(post_id);
+        }
+      }}
+    >
       <div className="user-posted-card">
         <button className="user-posted-card__summary">
           <div className="user-posted-card__info">

@@ -5,7 +5,10 @@ import { CircleCheck } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
 
-// TODO BEKIJK LOTTIE VOOR ANIMATIE ICON
+export const metadata = {
+  title: "Confirm Email",
+  description: "Confirm your email address to complete registration",
+};
 
 const page = () => {
   return (

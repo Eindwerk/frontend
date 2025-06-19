@@ -2,6 +2,7 @@ import { useTeamImage } from "@/hooks/useTeamImage";
 import type { ProfileData } from "@/types/profileData";
 
 const EMPTY_TEAM: ProfileData = {
+  id: 0,
   name: "",
   username: "",
   profile_image: "",

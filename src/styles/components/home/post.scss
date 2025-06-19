@@ -7,6 +7,44 @@
   overflow: hidden;
   width: 100%;
   height: 100%;
+  position: relative;
+
+  .user {
+    z-index: 2;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 1.5rem;
+    margin: 0.5rem;
+
+    &__profile-image {
+      position: relative;
+      width: 1.5rem;
+      aspect-ratio: 1 / 1;
+      border: 1px solid get-color(secondary);
+      border-radius: 50%;
+
+      img {
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .user-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3rem;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.8) 20%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    z-index: 1;
+    border-radius: 0.5rem;
+  }
 
   .front {
     &__image {

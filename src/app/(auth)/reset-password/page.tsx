@@ -1,6 +1,11 @@
 import { redirect } from "next/navigation";
 import ResetPasswordForm from "@/components/auth/ResetPasswordForm";
 
+export const metadata = {
+  title: "Reset Password",
+  description: "Reset your password to regain access to your account",
+};
+
 export default async function ResetPasswordPage({
   searchParams,
 }: {
@@ -12,5 +17,9 @@ export default async function ResetPasswordPage({
     return redirect("/sign-in");
   }
 
-  return <ResetPasswordForm token={params.token} email={params.email} />;
+  return (
+    <div className="reset-password-page">
+      <ResetPasswordForm token={params.token} email={params.email} />
+    </div>
+  );
 }
