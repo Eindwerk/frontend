@@ -51,7 +51,6 @@ export default function NewPostForm() {
       setPreviewUrl(null);
       setSelectedGameId(null);
       setSelectedStadiumId(null);
-      alert("Post succesvol aangemaakt!");
     }
   };
 

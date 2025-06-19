@@ -16,10 +16,18 @@ export async function SendNewPost(
   const apiKey = process.env.API_KEY;
 
   if (!token || !baseUrl || !apiKey) {
-    return { success: false, message: "Serverconfiguratie ontbreekt." };
+    return { success: false, message: "Missing server configuration." };
   }
 
   if (!baseUrl.endsWith("/")) baseUrl += "/";
+
+  const maxFileSize = 8 * 1024 * 1024;
+  if (image.size > maxFileSize) {
+    return {
+      success: false,
+      message: "File is too large. Maximum allowed size is 8MB.",
+    };
+  }
 
   const formData = new FormData();
 
@@ -39,27 +47,24 @@ export async function SendNewPost(
       cache: "no-store",
     });
 
-    console.log("Response status:", res);
-
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
-      console.error("Post creation failed:", data);
       return {
         success: false,
-        message: data?.message || `HTTP ${res.status}: Post mislukt.`,
+        message: data?.message || `HTTP ${res.status}: Post failed.`,
       };
     }
 
     const responseData = await res.json();
     return {
       success: true,
-      message: responseData?.message || "Post succesvol aangemaakt.",
+      message: responseData?.message || "Post created successfully.",
     };
   } catch (error) {
     console.error("Create post error:", error);
     return {
       success: false,
-      message: "Netwerkfout bij het aanmaken van de post.",
+      message: "Network error while creating post.",
     };
   }
 }
