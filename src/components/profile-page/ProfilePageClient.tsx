@@ -5,13 +5,19 @@ import { ProfileVariant } from "@/types/ProfileVariant";
 import { ProfileInfo } from "./ProfileInfo";
 import PostGrid from "./PostGrid";
 import type { ProfileData } from "@/types/profileData";
+import { Post } from "@/types/post";
 
 interface ProfilePageClientProps {
   variant: ProfileVariant;
   user: ProfileData | null;
+  posts?: Post[];
 }
 
-const ProfilePageClient = ({ variant, user }: ProfilePageClientProps) => {
+const ProfilePageClient = ({
+  variant,
+  user,
+  posts,
+}: ProfilePageClientProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const sanitizedUser =
@@ -31,7 +37,7 @@ const ProfilePageClient = ({ variant, user }: ProfilePageClientProps) => {
         setIsEditing={setIsEditing}
         user={sanitizedUser}
       />
-      <PostGrid isEditing={isEditing} />
+      <PostGrid isEditing={isEditing} posts={posts} />
     </div>
   );
 };

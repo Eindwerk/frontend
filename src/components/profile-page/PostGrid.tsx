@@ -1,15 +1,17 @@
+import { Post } from "@/types/post";
 import ProfilePost from "./ProfilePost";
 
 interface Props {
   isEditing: boolean;
+  posts?: Post[];
 }
 
-const PostGrid = ({ isEditing }: Props) => {
+const PostGrid = ({ isEditing, posts }: Props) => {
   return (
     <div className="profile__scroll-area" role="region" aria-label="Post grid">
       <div className="profile__scroll-area__grid">
-        {Array.from({ length: 24 }).map((_, i) => (
-          <ProfilePost key={i} isEditing={isEditing} />
+        {posts?.map((post) => (
+          <ProfilePost key={post.id} isEditing={isEditing} post={post} />
         ))}
       </div>
     </div>

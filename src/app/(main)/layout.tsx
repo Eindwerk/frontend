@@ -16,8 +16,9 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, viewport-fit=cover"
+          content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=0"
         />
+        <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body>
         <ClientAppFrame>{children}</ClientAppFrame>

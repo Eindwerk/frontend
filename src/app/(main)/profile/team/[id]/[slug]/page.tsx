@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import ProfilePageClient from "@/components/profile-page/ProfilePageClient";
 import { getTeamById } from "@/lib/actions/getTeamById";
+import { getPostsByTeam } from "@/lib/actions/getTeamPosts";
 import type { ProfileData } from "@/types/profileData";
 import { slugify } from "@/lib/utils/slugify";
 
@@ -16,6 +17,8 @@ export default async function TeamProfilePage({
   const team = await getTeamById(Number(id));
   if (!team) return notFound();
 
+  const posts = await getPostsByTeam(id);
+
   const expectedSlug = slugify(team.name);
 
   if (slug !== expectedSlug) return notFound();
@@ -23,9 +26,11 @@ export default async function TeamProfilePage({
   const profile: ProfileData = {
     name: team.name,
     username: team.name ?? "",
-    profile_image: team.logo_url ?? "",
+    profile_image: team.profile_image ?? "",
     banner_image: team.banner_image ?? "",
   };
 
-  return <ProfilePageClient variant="team" user={profile} />;
+  console.log(profile);
+
+  return <ProfilePageClient variant="team" user={profile} posts={posts} />;
 }

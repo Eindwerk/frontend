@@ -1,9 +1,9 @@
-import { Competition } from "./competition";
-
 export interface Team {
   id: number;
   name: string;
-  league: Competition;
-  logo_url: string | null;
+  league_id: number;
+  profile_image: string | null;
   banner_image: string | null;
+  created_at: string;
+  updated_at: string;
 }

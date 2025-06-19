@@ -4,23 +4,26 @@ import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Trash2 } from "lucide-react";
-import DummyPicture from "@/../public/dummy/IMG_2900.jpg";
 import Text from "../ui/Text";
 import ConfirmOverlay from "../ui/ConfirmOverlay";
+import type { Post } from "@/types/post";
+
+import { usePostInfo } from "@/hooks/usePostInfo";
+import { deletePost } from "@/lib/actions/deletePost";
 
 interface Props {
   isEditing?: boolean;
+  post: Post;
 }
 
-const ProfilePost = ({ isEditing = false }: Props) => {
+const ProfilePost = ({ isEditing = false, post }: Props) => {
   const router = useRouter();
   const [confirmOpen, setConfirmOpen] = useState(false);
 
-  const handleClick = () => {
-    if (!isEditing) {
-      router.push("/post-detail");
-    }
-  };
+  const { imageSrc, isReady } = usePostInfo(post);
+
+  // Haal title direct uit post object (want usePostInfo geeft die niet)
+  const title = post.title ?? "Profile Post";
 
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -29,19 +32,27 @@ const ProfilePost = ({ isEditing = false }: Props) => {
 
   const confirmDelete = () => {
     setConfirmOpen(false);
-    console.log("Post deleted");
-    // TODO: add actual delete logic (API call, local state update, etc.)
+    deletePost(post.id);
+    router.refresh();
   };
+
+  if (!isReady) return null; // of loader tonen
 
   return (
     <>
-      <div className="profile__post" onClick={handleClick}>
+      <div className="profile__post">
         <div className="profile__post-image">
-          <Image src={DummyPicture} alt="Profile Post" />
+          <Image
+            src={imageSrc}
+            alt={title}
+            width={200}
+            height={200}
+            style={{ objectFit: "cover" }}
+          />
         </div>
 
         <div className="profile__post-content subtext-white-12">
-          <Text variant="subtext-white-12">KAA Gent - Anderlecht</Text>
+          <Text variant="subtext-white-12">{title}</Text>
         </div>
 
         {isEditing && (

@@ -5,6 +5,7 @@ import { signOut } from "@/lib/actions/signOut";
 import { updateProfile } from "@/lib/actions/updateProfile";
 import { toggleFollow } from "@/server-actions/toggleFollow";
 import Button from "../ui/Button";
+import { useRouter } from "next/navigation";
 
 export function FollowButtonForm({
   own,
@@ -21,6 +22,8 @@ export function FollowButtonForm({
   profileImage?: File;
   bannerImage?: File;
 }) {
+  const router = useRouter();
+
   const [isFollowing, formAction, isPending] = useActionState(
     toggleFollow,
     false
@@ -34,6 +37,7 @@ export function FollowButtonForm({
         if (result.success) {
           setIsEditing(false);
           console.log(result.message);
+          router.push("/profile/my-profile");
         } else {
           console.error("Save failed:", result.message);
         }

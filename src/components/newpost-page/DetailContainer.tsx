@@ -1,38 +1,54 @@
 "use client";
 
-// TODO: Remove the matchData and implement the real api call
-
-import React, { useState, useRef, useEffect } from "react";
-import { matchOptions } from "./matchData";
+import React, { useState, useEffect, useRef } from "react";
 import SuggestionDropdown from "./SuggestionDropdown";
+import { getAllGames } from "@/lib/actions/getAllGames";
+import { Game } from "@/types/game";
+import Text from "../ui/Text";
 
-const DetailContainer: React.FC = () => {
+interface Props {
+  onSelectGame: (gameId: number, stadiumId: number | null) => void;
+}
+
+const DetailContainer: React.FC<Props> = ({ onSelectGame }) => {
   const [titleInput, setTitleInput] = useState("");
   const [stadiumInput, setStadiumInput] = useState("");
-  const [titleSuggestions, setTitleSuggestions] = useState<string[]>([]);
-  const [stadiumSuggestions, setStadiumSuggestions] = useState<string[]>([]);
-
+  const [suggestions, setSuggestions] = useState<Game[]>([]);
+  const [allGames, setAllGames] = useState<Game[]>([]);
   const titleRef = useRef<HTMLDivElement>(null);
-  const stadiumRef = useRef<HTMLDivElement>(null);
+
+  const handleSelect = (game: Game) => {
+    setTitleInput(
+      `${game.home_team?.name ?? ""} - ${game.away_team?.name ?? ""}`
+    );
+    setStadiumInput(game.stadium?.name || "");
+    setSuggestions([]);
+    onSelectGame(game.id, game.stadium?.id ?? null);
+  };
 
   useEffect(() => {
-    const filtered = matchOptions.filter((opt) =>
-      opt.title.toLowerCase().includes(titleInput.toLowerCase())
-    );
-    setTitleSuggestions(
-      titleInput.trim() === "" ? [] : filtered.map((m) => m.title)
-    );
-  }, [titleInput]);
+    const fetchGames = async () => {
+      const games = await getAllGames();
+      setAllGames(games);
+    };
+    fetchGames();
+  }, []);
 
   useEffect(() => {
-    const uniqueStadiums = Array.from(
-      new Set(matchOptions.map((m) => m.stadium))
-    );
-    const filtered = uniqueStadiums.filter((opt) =>
-      opt.toLowerCase().includes(stadiumInput.toLowerCase())
-    );
-    setStadiumSuggestions(stadiumInput.trim() === "" ? [] : filtered);
-  }, [stadiumInput]);
+    if (titleInput.trim() === "") {
+      setSuggestions([]);
+      return;
+    }
+
+    const filtered = allGames.filter((game) => {
+      const matchTitle = `${game.home_team?.name ?? ""} - ${
+        game.away_team?.name ?? ""
+      }`;
+      return matchTitle.toLowerCase().includes(titleInput.toLowerCase());
+    });
+
+    setSuggestions(filtered);
+  }, [titleInput, allGames]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -40,64 +56,28 @@ const DetailContainer: React.FC = () => {
         titleRef.current &&
         !titleRef.current.contains(event.target as Node)
       ) {
-        setTitleSuggestions([]);
-      }
-      if (
-        stadiumRef.current &&
-        !stadiumRef.current.contains(event.target as Node)
-      ) {
-        setStadiumSuggestions([]);
+        setSuggestions([]);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, []);
 
   return (
-    <div className="new-post-page__detail-container">
-      {/* Title */}
-      <div ref={titleRef} style={{ position: "relative", width: "100%" }}>
-        <input
-          className="title bold-blue-22"
-          placeholder="Add Match Title"
-          value={titleInput}
-          onChange={(e) => setTitleInput(e.target.value)}
-          autoComplete="off"
-        />
-        {titleSuggestions.length > 0 && (
-          <SuggestionDropdown
-            suggestions={titleSuggestions}
-            onSelect={(selectedTitle) => {
-              setTitleInput(selectedTitle);
-              const match = matchOptions.find((m) => m.title === selectedTitle);
-              if (match) setStadiumInput(match.stadium);
-              setTitleSuggestions([]);
-            }}
-          />
-        )}
-      </div>
-
-      {/* Stadium */}
-      <div ref={stadiumRef} style={{ position: "relative", width: "100%" }}>
-        <input
-          className="stadium subtext-spaceblue-12"
-          placeholder="Add Stadium"
-          value={stadiumInput}
-          onChange={(e) => setStadiumInput(e.target.value)}
-          autoComplete="off"
-        />
-        {stadiumSuggestions.length > 0 && (
-          <SuggestionDropdown
-            suggestions={stadiumSuggestions}
-            onSelect={(selectedStadium) => {
-              setStadiumInput(selectedStadium);
-              setStadiumSuggestions([]);
-            }}
-          />
-        )}
-      </div>
+    <div ref={titleRef} className="new-post-page__content__detail-container">
+      <input
+        className="title bold-blue-22"
+        placeholder="Add Match Title"
+        value={titleInput}
+        onChange={(e) => setTitleInput(e.target.value)}
+        autoComplete="off"
+      />
+      {suggestions.length > 0 && (
+        <SuggestionDropdown suggestions={suggestions} onSelect={handleSelect} />
+      )}
+      <Text variant="subtext-spaceblue-12">{stadiumInput}</Text>
     </div>
   );
 };

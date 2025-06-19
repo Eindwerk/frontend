@@ -28,14 +28,7 @@ const customIcon = L.divIcon({
 const MapComponent = ({
   setClickedStadium,
 }: {
-  setClickedStadium: React.Dispatch<
-    React.SetStateAction<{
-      id?: number;
-      team: string;
-      stadium: string;
-      location: { lat: number; lng: number };
-    } | null>
-  >;
+  setClickedStadium: React.Dispatch<React.SetStateAction<Stadium | null>>;
 }) => {
   const [center, setCenter] = useState({ lat: 50, lng: 4 });
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -45,7 +38,7 @@ const MapComponent = ({
     if (data && data.length > 0) {
       const markers: { location: [number, number] }[] = data.map(
         (stadium: Stadium) => ({
-          location: [stadium.location.latitude, stadium.location.altitude],
+          location: [stadium.latitude, stadium.longitude],
         })
       );
 
@@ -90,17 +83,11 @@ const MapComponent = ({
             <Marker
               icon={customIcon}
               key={stadium.id}
-              position={[stadium.location.latitude, stadium.location.altitude]}
+              position={[Number(stadium.latitude), Number(stadium.longitude)]}
               eventHandlers={{
                 click: () => {
                   setClickedStadium({
-                    id: stadium.id,
-                    team: stadium.team_name,
-                    stadium: stadium.name,
-                    location: {
-                      lat: stadium.location.latitude,
-                      lng: stadium.location.altitude,
-                    },
+                    ...stadium,
                   });
                 },
               }}

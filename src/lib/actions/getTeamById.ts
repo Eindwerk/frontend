@@ -20,6 +20,8 @@ export async function getTeamById(teamId: number): Promise<Team | null> {
     cache: "no-store",
   });
 
+  console.log("Dit is de res:", res);
+
   if (!res.ok) return null;
 
   return res.json();

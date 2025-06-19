@@ -1,8 +1,11 @@
 export interface User {
-  id: string;
+  id: number;
   name: string;
-  username: string;
   email: string;
-  profile_image: string | null;
-  banner_image: string | null;
+  password?: string;
+  description?: string;
+  role: "user" | "admin" | "super_admin";
+  profile_image?: string;
+  username: string;
+  banner_image?: string;
 }

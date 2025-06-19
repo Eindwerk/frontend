@@ -9,16 +9,14 @@
   padding: 1rem;
   display: flex;
   justify-content: center;
+  height: 100%;
 
   &__content {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-
-    @include desktop {
-      max-width: 775px;
-    }
+    max-width: 50rem;
   }
 
   &__notification {
@@ -45,9 +43,5 @@
       top: 0.3rem;
       color: get-color(secondary);
     }
-  }
-
-  @include desktop {
-    align-items: center;
   }
 }

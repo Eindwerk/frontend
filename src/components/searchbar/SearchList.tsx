@@ -1,8 +1,8 @@
 import { getAllStadiums } from "@/lib/actions/getAllStadiums";
 import { getAllTeams } from "@/lib/actions/getAllTeams";
+import { getAllUsers } from "@/lib/actions/getAllUsers";
 import { slugify } from "@/lib/utils/slugify";
 import SearchResult from "../ui/SearchResult";
-import { getAllUsers } from "@/lib/actions/getAllUsers";
 
 const SearchList = async ({ search }: { search: string }) => {
   const trimmed = (search ?? "").trim();

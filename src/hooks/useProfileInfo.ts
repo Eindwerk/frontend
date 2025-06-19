@@ -1,4 +1,4 @@
-import { useProfileImage } from "@/hooks/useProfileImage";
+import { useProfileImage } from "./useProfileImage";
 import type { ProfileData } from "@/types/profileData";
 
 const EMPTY_USER: ProfileData = {
@@ -34,5 +34,6 @@ export function useProfileInfo(user: ProfileData | null) {
     profileInputRef,
     bannerInputRef,
     username: safeUser.username,
+    name: safeUser.name,
   };
 }

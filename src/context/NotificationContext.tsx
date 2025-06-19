@@ -1,21 +1,13 @@
 "use client";
 
-// TODO: get the amount of notifications from the api
-
-import React, {
+import {
   createContext,
   useContext,
   useState,
-  ReactNode,
   useEffect,
+  ReactNode,
 } from "react";
-
-interface Notification {
-  type: "friend-request" | "new-post" | "user-commented" | "user-liked";
-  username?: string;
-  userId?: string;
-  postId?: string;
-}
+import type { Notification } from "@/types/notification";
 
 interface NotificationContextType {
   count: number;
@@ -29,35 +21,30 @@ const NotificationContext = createContext<NotificationContextType | undefined>(
 
 export const useNotification = () => {
   const context = useContext(NotificationContext);
-  if (!context)
+  if (!context) {
     throw new Error("useNotification must be used within NotificationProvider");
+  }
   return context;
 };
 
-const defaultNotifications: Notification[] = [
-  { type: "friend-request" },
-  { type: "new-post", username: "Alice", userId: "user_123" },
-  {
-    type: "user-commented",
-    username: "Bob",
-    userId: "user_456",
-    postId: "post_789",
-  },
-  {
-    type: "user-liked",
-    username: "Charlie",
-    userId: "user_101",
-    postId: "post_112",
-  },
-];
-
 export const NotificationProvider = ({ children }: { children: ReactNode }) => {
-  const [notifications] = useState<Notification[]>(defaultNotifications);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    setCount(notifications.length);
-  }, [notifications]);
+    const fetchNotifications = async () => {
+      try {
+        const res = await fetch("/api/notifications");
+        const data: Notification[] = await res.json();
+        setNotifications(data);
+        setCount(data.length);
+      } catch (error) {
+        console.error("Kon notificaties niet ophalen:", error);
+      }
+    };
+
+    fetchNotifications();
+  }, []);
 
   return (
     <NotificationContext.Provider value={{ count, setCount, notifications }}>

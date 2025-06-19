@@ -4,7 +4,7 @@ import BannerImage from "./BannerImage";
 import AvatarImage from "./AvatarImage";
 
 import { useProfileInfo } from "@/hooks/useProfileInfo";
-import { useTeamInfo } from "@/hooks/ useTeamInfo";
+import { useTeamInfo } from "@/hooks/useTeamInfo";
 import { useStadiumInfo } from "@/hooks/useStadiumInfo";
 import type { ProfileData } from "@/types/profileData";
 
@@ -41,6 +41,8 @@ export function ProfileInfo({
   } = variant === "team" ? team : variant === "stadium" ? stadium : profile;
 
   if (!isReady) return null;
+
+  console.log(profileSrc);
 
   return (
     <div className="profile__header">

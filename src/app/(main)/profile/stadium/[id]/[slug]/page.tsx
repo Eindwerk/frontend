@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import ProfilePageClient from "@/components/profile-page/ProfilePageClient";
 import { getStadiumById } from "@/lib/actions/getStadiumById";
+import { getPostsByStadium } from "@/lib/actions/getStadiumPosts";
 import type { ProfileData } from "@/types/profileData";
 import { slugify } from "@/lib/utils/slugify";
 
@@ -16,6 +17,8 @@ export default async function StadiumProfilePage({
   const stadium = await getStadiumById(Number(id));
   if (!stadium) return notFound();
 
+  const posts = await getPostsByStadium(id);
+
   const expectedSlug = slugify(stadium.name);
 
   if (slug !== expectedSlug) return notFound();
@@ -27,7 +30,7 @@ export default async function StadiumProfilePage({
     banner_image: stadium.banner_image ?? "",
   };
 
-  console.log("Stadium profile data:", profile);
+  console.log("Stadium profile data:", posts);
 
-  return <ProfilePageClient variant="stadium" user={profile} />;
+  return <ProfilePageClient variant="stadium" user={profile} posts={posts} />;
 }

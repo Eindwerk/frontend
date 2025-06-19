@@ -4,7 +4,7 @@ export function useStadiumImage(stadium: {
   banner_image: string;
   logo_url: string;
 }) {
-  const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "";
+  const BASE_URL = process.env.ASSET_URL || "";
 
   const [previewLogo, setPreviewLogo] = useState<string | null>(null);
   const [previewBanner, setPreviewBanner] = useState<string | null>(null);
@@ -16,8 +16,15 @@ export function useStadiumImage(stadium: {
     null
   ) as RefObject<HTMLInputElement>;
 
-  const getImageSrc = (val: string | undefined | null, fallback: string) =>
-    val?.trim() ? `${BASE_URL}/${val}` : `${BASE_URL}/${fallback}`;
+  const getImageSrc = (val: string | undefined | null, fallback: string) => {
+    if (!val || !val.trim()) {
+      return `${BASE_URL}/${fallback}`;
+    }
+    if (/^https?:\/\//i.test(val.trim())) {
+      return val.trim();
+    }
+    return `${BASE_URL}/${val.trim()}`;
+  };
 
   const logoSrc =
     previewLogo || getImageSrc(stadium?.logo_url, "img/profile.jpg");

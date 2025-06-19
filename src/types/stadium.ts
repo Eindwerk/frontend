@@ -1,13 +1,11 @@
-import { Team } from "./team";
-
 export interface Stadium {
   id: number;
   name: string;
-  team_name: Team["name"];
-  profile_image: string | null;
-  banner_image: string | null;
-  location: {
-    latitude: number;
-    altitude: number;
-  };
+  created_at: string;
+  updated_at: string;
+  latitude: number;
+  longitude: number;
+  banner_image?: string;
+  team_id: number;
+  profile_image?: string;
 }

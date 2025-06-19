@@ -6,7 +6,10 @@ const nextConfig = {
     },
   },
   images: {
-    domains: ["admin.groundpass.be"],
+    domains: [
+      "admin.groundpass.be",
+      "groundpass-storage.ams3.digitaloceanspaces.com",
+    ],
   },
   webpack(config: any) {
     const fileLoaderRule = config.module.rules.find((rule: any) =>
