@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stadion Tracker Frontend
 
-## Getting Started
+Dit is de frontend van het Stadion Tracker project, gebouwd met [Next.js](https://nextjs.org) en TypeScript.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Profielpagina’s voor gebruikers, teams en stadions
+- Volgen/ontvolgen van gebruikers, teams en stadions
+- Posts met afbeeldingen uploaden
+- Like & comment functionaliteit
+- Notificatiesysteem
+- Responsive design (PWA-ready)
+- Geoptimaliseerde afbeeldingen met Next.js `<Image />`
+- Uitgebreide zoekfunctionaliteit
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Gebruikte technologieën
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js** (App Router, Server Actions)
+- **React** & **TypeScript**
+- **SCSS** (Sass)
+- **JWT-authenticatie**
+- **REST API** (backend)
+- **Vercel** (of andere hosting)
+- **Lucide-react** (iconen)
+- **dotenv** (environment variables)
+- **Postman** (API testen)
+- **ESLint & Prettier** (code quality)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Installatie
 
-## Learn More
+1. **Clone deze repository:**
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone https://github.com/jouw-gebruikernaam/stadion-tracker-frontend.git
+   cd stadion-tracker-frontend
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Installeer dependencies:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   npm install
+   # of
+   yarn install
+   ```
 
-## Deploy on Vercel
+3. **Maak een `.env.local` bestand aan:**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```
+   API_BASE_URL=https://jouw-backend-url/
+   API_KEY=...
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. **Start de development server:**
+
+   ```bash
+   npm run dev
+   # of
+   yarn dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in je browser.
+
+## Development tips
+
+- **Gebruik VS Code** voor de beste ervaring.
+- **Check de `src/lib/actions/` map** voor alle server actions.
+- **Gebruik de Next.js `<Image />` component** voor alle afbeeldingen.
+- **Gebruik Postman** om je backend API te testen.
+- **Gebruik de Network tab** in je browser DevTools om trage requests te debuggen.
+
+## Deployment
+
+Deploy eenvoudig op [Vercel](https://vercel.com/) of een andere Next.js-geschikte host.
+
+## Licentie
+
+MIT
+
+---
+
+**Vragen of feedback? Maak een issue aan of stuur een pull request!**
