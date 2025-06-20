@@ -7,6 +7,7 @@ import Button from "@/components/ui/Button";
 import ConfirmOverlay from "@/components/ui/ConfirmOverlay";
 import { SendNewPost } from "@/lib/actions/sendPost";
 import Text from "@/components/ui/Text";
+import router from "next/router";
 
 export default function NewPostForm() {
   const [showConfirm, setShowConfirm] = useState(false);
@@ -51,6 +52,7 @@ export default function NewPostForm() {
       setPreviewUrl(null);
       setSelectedGameId(null);
       setSelectedStadiumId(null);
+      router.push("/");
     }
   };
 

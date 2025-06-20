@@ -1,6 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache"; // ✅ voeg dit toe
 
 export async function SendNewPost(
   game_id: number,
@@ -56,6 +57,9 @@ export async function SendNewPost(
     }
 
     const responseData = await res.json();
+
+    revalidatePath("/");
+
     return {
       success: true,
       message: responseData?.message || "Post created successfully.",

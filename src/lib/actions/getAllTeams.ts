@@ -7,7 +7,7 @@ export async function getAllTeams(): Promise<Team[]> {
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get("token")?.value;
-    const baseUrl = process.env.API_BASE_URL;
+    let baseUrl = process.env.API_BASE_URL;
     const apiKey = process.env.API_KEY;
 
     if (!token || !baseUrl || !apiKey) {
@@ -19,16 +19,19 @@ export async function getAllTeams(): Promise<Team[]> {
       return [];
     }
 
+    if (!baseUrl.endsWith("/")) baseUrl += "/";
+
     const res = await fetch(`${baseUrl}teams`, {
       headers: {
         Accept: "application/json",
         Authorization: `Bearer ${token}`,
         "X-API-KEY": apiKey,
       },
-      cache: "no-store",
+      cache: "force-cache",
+      next: {
+        revalidate: 604800, // ⏱️ 7 dagen
+      },
     });
-
-    const data: Team[] = await res.json();
 
     if (!res.ok) {
       const text = await res.text();
@@ -36,6 +39,7 @@ export async function getAllTeams(): Promise<Team[]> {
       return [];
     }
 
+    const data: Team[] = await res.json();
     return data;
   } catch (err) {
     console.error("Teams fetch crashed:", err);

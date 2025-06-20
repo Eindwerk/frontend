@@ -1,23 +1,17 @@
-import { getAllStadiums } from "@/lib/actions/getAllStadiums";
-import { getAllTeams } from "@/lib/actions/getAllTeams";
-import { getAllUsers } from "@/lib/actions/getAllUsers";
+import { getAllSearchData } from "@/lib/actions/getAllSearchData";
 import { slugify } from "@/lib/utils/slugify";
 import SearchResult from "../ui/SearchResult";
 
 const SearchList = async ({ search }: { search: string }) => {
   const trimmed = (search ?? "").trim();
 
-  if (!trimmed) {
-    return null;
-  }
+  if (!trimmed) return null;
 
-  const teamData = await getAllTeams();
-  const stadiumData = await getAllStadiums();
-  const userData = await getAllUsers();
+  const { teams, stadiums, users } = await getAllSearchData();
 
   return (
     <div className="searchpage__list">
-      {userData
+      {users
         .filter((u) => u.name.toLowerCase().includes(trimmed.toLowerCase()))
         .map((user) => (
           <SearchResult
@@ -28,7 +22,7 @@ const SearchList = async ({ search }: { search: string }) => {
           />
         ))}
 
-      {teamData
+      {teams
         .filter((t) => t.name.toLowerCase().includes(trimmed.toLowerCase()))
         .map((team) => (
           <SearchResult
@@ -39,7 +33,7 @@ const SearchList = async ({ search }: { search: string }) => {
           />
         ))}
 
-      {stadiumData
+      {stadiums
         .filter((s) => s.name.toLowerCase().includes(trimmed.toLowerCase()))
         .map((stadium) => (
           <SearchResult

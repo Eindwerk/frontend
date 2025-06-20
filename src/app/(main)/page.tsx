@@ -1,4 +1,4 @@
-import PostList from "@/components/home/PostList";
+import PostListServer from "@/components/home/PostListServer";
 
 export const metadata = {
   title: "Home",
@@ -8,8 +8,9 @@ export const metadata = {
 const page = () => {
   return (
     <div className="scroll-area">
-      <PostList />
+      <PostListServer />
     </div>
   );
 };
+
 export default page;

@@ -8,10 +8,12 @@ export async function getStadiumById(
 ): Promise<Stadium | null> {
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
-  const baseUrl = process.env.API_BASE_URL;
+  let baseUrl = process.env.API_BASE_URL;
   const apiKey = process.env.API_KEY;
 
   if (!token || !baseUrl || !apiKey) return null;
+
+  if (!baseUrl.endsWith("/")) baseUrl += "/";
 
   const res = await fetch(`${baseUrl}stadiums/${stadiumId}`, {
     headers: {
@@ -19,7 +21,10 @@ export async function getStadiumById(
       Authorization: `Bearer ${token}`,
       "X-API-KEY": apiKey,
     },
-    cache: "no-store",
+    cache: "force-cache",
+    next: {
+      revalidate: 604800, // 7 dagen
+    },
   });
 
   if (!res.ok) return null;
